@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,11 +20,19 @@ namespace ImportarExcel
     }
 
 
-    private void LerBySql()
+    private void LerExcel(string arquivo, string planilha, string sqlCustom = "")
     {
-      OleDbConnection conexao = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\teste\LerExcel\01.xls; Extended Properties ='Excel 12.0 Xml; HDR = YES';");
+      OleDbConnection conexao = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =" + arquivo + "; Extended Properties ='Excel 12.0 Xml; HDR = YES';");
+      //
 
-      OleDbDataAdapter adapter = new OleDbDataAdapter("select [EFETIVO DE PESSOAL - MENSAL], f6,f12, f18, trim(f24) from [Efetivo$] where f24<>'' ", conexao);
+      string sql;
+      if (sqlCustom == "")
+        sql = "select * from [" + planilha + "] ";
+      else
+        sql = sqlCustom;
+      //select [EFETIVO DE PESSOAL - MENSAL], F6, F12, F18, F19, F24, F30, F36, F37, F42, F48, F54, F60, F61, F66, F72, F73, F79, F80, F85, F86, F87, F92, F93, F98, F99, F100  from[Efetivo$]
+      //string sql = "select [EFETIVO DE PESSOAL - MENSAL], f6,f12, f18, trim(f24) from [Efetivo$] where f24<>'' ";
+      OleDbDataAdapter adapter = new OleDbDataAdapter(sql, conexao);
       DataSet ds = new DataSet();
 
 
@@ -32,8 +41,8 @@ namespace ImportarExcel
         conexao.Open();
 
         adapter.Fill(ds);
-
-        //dgvDados.DataSource = ds.Tables[0];
+        dgvDados.DataSource = null;
+        dgvDados.DataSource = ds.Tables[0];
 
         /////Para preencher o objto e migrar para o banco
         //foreach (DataRow linha in ds.Tables[0].Rows)
@@ -55,82 +64,137 @@ namespace ImportarExcel
     }
 
 
-    private void Ler()
+    private String[] GetExcelSheetNames(string arquivo)
     {
-      Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-      excelApp.Visible = false;
+      OleDbConnection objConn = null;
+      System.Data.DataTable dt = null;
 
-      string myPath = @"C:\\teste\\LerExcel\\01.xls";
-      Microsoft.Office.Interop.Excel.Workbook wbExcel = excelApp.Workbooks.Open(myPath);
-      Microsoft.Office.Interop.Excel.Worksheet wsPlanilha = (Microsoft.Office.Interop.Excel.Worksheet)wbExcel.Worksheets.get_Item(2);
-      //int rowIndex = Convert.ToInt32(textBox2.Text);
-      //int colIndex = Convert.ToInt32(textBox1.Text);
-
-      string celula = "a" + "b";
-      //Para pegar o valor interno sem formatação
-      var valor = wsPlanilha.get_Range(celula, celula).Value2;
-
-      //Para pegar o texto exatamente como é mostrado na célula
-      var texto = wsPlanilha.get_Range(celula, celula).Text;
-
-      excelApp.Workbooks.Close();
-      excelApp.Quit();
-
-      //wbExcel.Close();
-
-
-      //Mata os objetos COM da memória
-      System.Runtime.InteropServices.Marshal.ReleaseComObject(wbExcel);
-      System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
-
-    }
-
-    private string getColuna(int iLin, int iCol)
-    {
-      String[] letras = new String[] { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-
-      if (iCol >= 703)
+      try
       {
-        int iCol1 = 0;
-        int iCol2 = 0;
-        int iCol3 = 0;
+        // Configura a Connection String
+        String connString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=No;IMEX=1\";", arquivo);
 
-        iCol2 = iCol / 26;
-        if (iCol % 26 == 0)
+        // Cria o objeto de conexão usando a connection string
+        objConn = new OleDbConnection(connString);
+
+        // Abre a conexão com o banco de dados
+        objConn.Open();
+        dt = objConn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+
+        if (dt == null)
         {
-          iCol2 -= 1;
-          iCol3 = 26;
+          return null;
         }
-        else
+
+        String[] excelSheets = new String[dt.Rows.Count];
+        int i = 0;
+
+        // Adiciona os nomes na array
+        foreach (DataRow row in dt.Rows)
         {
-          iCol3 = iCol % 26;
+          if (!row["TABLE_NAME"].ToString().Contains("Print_Titles") &&
+              !row["TABLE_NAME"].ToString().Contains("Print_Area"))
+          {
+            excelSheets[i] = row["TABLE_NAME"].ToString();
+            i++;
+          }
         }
 
-        iCol1 = iCol2 / 26;
-        iCol2 = iCol2 % 26;
+        // Loop através de todas as folhas se você quiser também..
+        //for (int j = 0; j < excelSheets.Length; j++)
+        //{
+        //  // Consultar cada folha de excel
+        //}
 
-        return letras[iCol1] + letras[iCol2] + letras[iCol3] + iLin.ToString();
+        return excelSheets;
       }
-      else
+      catch (Exception ex)
       {
-        int iCol1 = 0;
-        int iCol2 = 0;
-
-        iCol1 = iCol / 26;
-        if (iCol % 26 == 0)
+        return null;
+      }
+      finally
+      {
+        if (objConn != null)
         {
-          iCol1 -= 1;
-          iCol2 = 26;
+          objConn.Close();
+          objConn.Dispose();
         }
-        else
+        if (dt != null)
         {
-          iCol2 = iCol % 26;
+          dt.Dispose();
         }
-
-        return letras[iCol1] + letras[iCol2] + iLin.ToString();
       }
     }
 
 
+
+    private void btnSelecionarArquivo_Click(object sender, EventArgs e)
+    {
+      //define as propriedades do controle 
+      //OpenFileDialog
+      this.ofd.Multiselect = true;
+      this.ofd.Title = "Selecionar Fotos";
+      ofd.InitialDirectory = @"C:\";
+      //filtra para exibir somente arquivos de imagens
+      ofd.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+      ofd.CheckFileExists = true;
+      ofd.CheckPathExists = true;
+      ofd.FilterIndex = 2;
+      ofd.RestoreDirectory = true;
+      ofd.ReadOnlyChecked = true;
+      ofd.ShowReadOnly = true;
+
+      DialogResult dr = this.ofd.ShowDialog();
+
+      if (dr == System.Windows.Forms.DialogResult.OK)
+      {
+        // Le os arquivos selecionados 
+        foreach (String arquivo in ofd.FileNames)
+        {
+          txtImportar.Text += arquivo;
+          // cria um PictureBox
+          try
+          {
+            //LerExcel(arquivo, "Gestão", "INDICADORES MENSAIS DE GESTÃO");
+            var planilhas = GetExcelSheetNames(arquivo);
+            int i = 0;
+            foreach (var item in planilhas)
+            {
+              if (item != null)
+              {
+                cmbPlanilhas.Items.Insert(i, item.ToString());
+                i++;
+              }
+            }
+            
+            
+          }
+          catch (SecurityException ex)
+          {
+            // O usuário  não possui permissão para ler arquivos
+            MessageBox.Show("Erro de segurança Contate o administrador de segurança da rede.\n\n" +
+                                        "Mensagem : " + ex.Message + "\n\n" +
+                                        "Detalhes (enviar ao suporte):\n\n" + ex.StackTrace);
+          }
+          catch (Exception ex)
+          {
+            // Não pode carregar a imagem (problemas de permissão)
+            MessageBox.Show("Não é possível abrir o arquivo : " + arquivo
+                                       + ". Você pode não ter permissão para ler o arquivo , ou " +
+                                       " ele pode estar corrompido.\n\nErro reportado : " + ex.Message);
+          }
+        }
+      }
+    }
+
+    private void cmbPlanilhas_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      LerExcel(txtImportar.Text, cmbPlanilhas.Text);
+    }
+
+    private void btnAtualizarGrid_Click(object sender, EventArgs e)
+    {
+      LerExcel(txtImportar.Text, cmbPlanilhas.Text, txtQuery.Text);
+    }
   }
 }

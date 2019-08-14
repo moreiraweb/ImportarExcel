@@ -35,6 +35,8 @@
       this.frmImportaroolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.configurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.bancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
       this.cascadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.tileVerticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,8 +54,6 @@
       this.statusStrip = new System.Windows.Forms.StatusStrip();
       this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-      this.configurarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.bancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip.SuspendLayout();
       this.toolStrip.SuspendLayout();
       this.statusStrip.SuspendLayout();
@@ -106,6 +106,21 @@
       this.exitToolStripMenuItem.Text = "E&xit";
       this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
       // 
+      // configurarToolStripMenuItem
+      // 
+      this.configurarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bancoToolStripMenuItem});
+      this.configurarToolStripMenuItem.Name = "configurarToolStripMenuItem";
+      this.configurarToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+      this.configurarToolStripMenuItem.Text = "&Configurar";
+      // 
+      // bancoToolStripMenuItem
+      // 
+      this.bancoToolStripMenuItem.Name = "bancoToolStripMenuItem";
+      this.bancoToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+      this.bancoToolStripMenuItem.Text = "&Banco";
+      this.bancoToolStripMenuItem.Click += new System.EventHandler(this.bancoToolStripMenuItem_Click);
+      // 
       // windowsMenu
       // 
       this.windowsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -120,28 +135,28 @@
       // cascadeToolStripMenuItem
       // 
       this.cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-      this.cascadeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.cascadeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
       this.cascadeToolStripMenuItem.Text = "&Cascata";
       this.cascadeToolStripMenuItem.Click += new System.EventHandler(this.CascadeToolStripMenuItem_Click);
       // 
       // tileVerticalToolStripMenuItem
       // 
       this.tileVerticalToolStripMenuItem.Name = "tileVerticalToolStripMenuItem";
-      this.tileVerticalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.tileVerticalToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
       this.tileVerticalToolStripMenuItem.Text = "&Vertical";
       this.tileVerticalToolStripMenuItem.Click += new System.EventHandler(this.TileVerticalToolStripMenuItem_Click);
       // 
       // tileHorizontalToolStripMenuItem
       // 
       this.tileHorizontalToolStripMenuItem.Name = "tileHorizontalToolStripMenuItem";
-      this.tileHorizontalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.tileHorizontalToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
       this.tileHorizontalToolStripMenuItem.Text = "&Horizontal";
       this.tileHorizontalToolStripMenuItem.Click += new System.EventHandler(this.TileHorizontalToolStripMenuItem_Click);
       // 
       // closeAllToolStripMenuItem
       // 
       this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
-      this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
       this.closeAllToolStripMenuItem.Text = "&Fechar Todas";
       this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.CloseAllToolStripMenuItem_Click);
       // 
@@ -234,21 +249,6 @@
       this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
       this.toolStripStatusLabel.Text = "Status";
       // 
-      // configurarToolStripMenuItem
-      // 
-      this.configurarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bancoToolStripMenuItem});
-      this.configurarToolStripMenuItem.Name = "configurarToolStripMenuItem";
-      this.configurarToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-      this.configurarToolStripMenuItem.Text = "&Configurar";
-      // 
-      // bancoToolStripMenuItem
-      // 
-      this.bancoToolStripMenuItem.Name = "bancoToolStripMenuItem";
-      this.bancoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-      this.bancoToolStripMenuItem.Text = "&Banco";
-      this.bancoToolStripMenuItem.Click += new System.EventHandler(this.bancoToolStripMenuItem_Click);
-      // 
       // frmPrincipal
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,6 +261,7 @@
       this.MainMenuStrip = this.menuStrip;
       this.Name = "frmPrincipal";
       this.Text = "Importar Arquivo Excel";
+      this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
       this.menuStrip.ResumeLayout(false);
       this.menuStrip.PerformLayout();
       this.toolStrip.ResumeLayout(false);
