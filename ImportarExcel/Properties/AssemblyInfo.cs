@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ImportarExcel")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Importar Arquivos Excel")]
+[assembly: AssemblyDescription("Sistema para migração de dados de arquivos excel para banco de dados.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ImportarExcel")]
+[assembly: AssemblyCompany("MOREIRA WEB")]
+[assembly: AssemblyProduct("Importar Arquivos Excel")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -14,7 +14,7 @@ namespace ImportarExcel
     public frmSobre()
     {
       InitializeComponent();
-      this.Text = String.Format("About {0}", AssemblyTitle);
+      this.Text = String.Format("Sobre {0}", AssemblyTitle);
       this.labelProductName.Text = AssemblyProduct;
       this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
       this.labelCopyright.Text = AssemblyCopyright;
@@ -101,5 +101,10 @@ namespace ImportarExcel
       }
     }
     #endregion
+
+    private void okButton_Click(object sender, EventArgs e)
+    {
+      this.Close();
+    }
   }
 }

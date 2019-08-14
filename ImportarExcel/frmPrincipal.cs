@@ -71,5 +71,12 @@ namespace ImportarExcel
     {
 
     }
+
+    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      frmSobre frm = new frmSobre();
+      frm.MdiParent = this;
+      frm.Show();
+    }
   }
 }
