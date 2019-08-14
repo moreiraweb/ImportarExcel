@@ -1,0 +1,13 @@
+C:\teste\ImportarExcel\ImportarExcel\bin\Debug\ImportarExcel.exe.config
+C:\teste\ImportarExcel\ImportarExcel\bin\Debug\ImportarExcel.exe
+C:\teste\ImportarExcel\ImportarExcel\bin\Debug\ImportarExcel.pdb
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.csprojAssemblyReference.cache
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmConfigBanco.resources
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmImportar.resources
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmPrincipal.resources
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmSobre.resources
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.Properties.Resources.resources
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.csproj.GenerateResource.cache
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.csproj.CoreCompileInputs.cache
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.exe
+C:\teste\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.pdb
