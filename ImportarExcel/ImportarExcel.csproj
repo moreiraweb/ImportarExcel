@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DaoGenerico.cs" />
     <Compile Include="frmConfigBanco.cs">
       <SubType>Form</SubType>
     </Compile>

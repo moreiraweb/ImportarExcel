@@ -90,16 +90,16 @@
       // txtQuery
       // 
       this.txtQuery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.txtQuery.Location = new System.Drawing.Point(15, 523);
+      this.txtQuery.Location = new System.Drawing.Point(15, 510);
       this.txtQuery.Multiline = true;
       this.txtQuery.Name = "txtQuery";
-      this.txtQuery.Size = new System.Drawing.Size(1043, 118);
+      this.txtQuery.Size = new System.Drawing.Size(1307, 118);
       this.txtQuery.TabIndex = 5;
       // 
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(12, 507);
+      this.label2.Location = new System.Drawing.Point(12, 494);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(48, 13);
       this.label2.TabIndex = 6;
@@ -107,7 +107,7 @@
       // 
       // btnAtualizarGrid
       // 
-      this.btnAtualizarGrid.Location = new System.Drawing.Point(1067, 523);
+      this.btnAtualizarGrid.Location = new System.Drawing.Point(15, 634);
       this.btnAtualizarGrid.Name = "btnAtualizarGrid";
       this.btnAtualizarGrid.Size = new System.Drawing.Size(270, 33);
       this.btnAtualizarGrid.TabIndex = 7;
@@ -119,7 +119,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1349, 651);
+      this.ClientSize = new System.Drawing.Size(1349, 725);
       this.Controls.Add(this.btnAtualizarGrid);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.txtQuery);

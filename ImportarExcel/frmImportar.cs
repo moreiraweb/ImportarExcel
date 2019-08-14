@@ -14,6 +14,8 @@ namespace ImportarExcel
 {
   public partial class frmImportar : Form
   {
+    private string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=No;IMEX=1\";";
+
     public frmImportar()
     {
       InitializeComponent();
@@ -22,27 +24,24 @@ namespace ImportarExcel
 
     private void LerExcel(string arquivo, string planilha, string sqlCustom = "")
     {
-      OleDbConnection conexao = new OleDbConnection(@"Provider = Microsoft.ACE.OLEDB.12.0; Data Source =" + arquivo + "; Extended Properties ='Excel 12.0 Xml; HDR = YES';");
-      //
+
 
       string sql;
       if (sqlCustom == "")
         sql = "select * from [" + planilha + "] ";
       else
         sql = sqlCustom;
-      //select [EFETIVO DE PESSOAL - MENSAL], F6, F12, F18, F19, F24, F30, F36, F37, F42, F48, F54, F60, F61, F66, F72, F73, F79, F80, F85, F86, F87, F92, F93, F98, F99, F100  from[Efetivo$]
+      //select [EFETIVO DE PESSOAL - MENSAL], F6, F12, F18, F19, F24, F30, F36, F37, F42, F48, F54, F60, F61, F66, F72, F73, F79, F80, 
+      //F85, F86, F87, F92, F93, F98, F99, F100  from[Efetivo$]
       //string sql = "select [EFETIVO DE PESSOAL - MENSAL], f6,f12, f18, trim(f24) from [Efetivo$] where f24<>'' ";
-      OleDbDataAdapter adapter = new OleDbDataAdapter(sql, conexao);
-      DataSet ds = new DataSet();
-
 
       try
       {
-        conexao.Open();
 
-        adapter.Fill(ds);
+        var result = new DaoGenerico().GetDados(sql, arquivo);
+
         dgvDados.DataSource = null;
-        dgvDados.DataSource = ds.Tables[0];
+        dgvDados.DataSource = result;
 
         /////Para preencher o objto e migrar para o banco
         //foreach (DataRow linha in ds.Tables[0].Rows)
@@ -55,31 +54,18 @@ namespace ImportarExcel
       {
         Console.WriteLine("Erro ao acessar os dados: " + ex.Message);
       }
-      finally
-      {
-        conexao.Close();
 
-      }
 
     }
 
 
     private String[] GetExcelSheetNames(string arquivo)
     {
-      OleDbConnection objConn = null;
-      System.Data.DataTable dt = null;
+
 
       try
       {
-        // Configura a Connection String
-        String connString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=No;IMEX=1\";", arquivo);
-
-        // Cria o objeto de conexão usando a connection string
-        objConn = new OleDbConnection(connString);
-
-        // Abre a conexão com o banco de dados
-        objConn.Open();
-        dt = objConn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+        var dt = new DaoGenerico().GetPlanilhas(arquivo);
 
         if (dt == null)
         {
@@ -112,24 +98,15 @@ namespace ImportarExcel
       {
         return null;
       }
-      finally
-      {
-        if (objConn != null)
-        {
-          objConn.Close();
-          objConn.Dispose();
-        }
-        if (dt != null)
-        {
-          dt.Dispose();
-        }
-      }
+      
     }
 
 
 
     private void btnSelecionarArquivo_Click(object sender, EventArgs e)
     {
+
+      txtImportar.Text = "";
       //define as propriedades do controle 
       //OpenFileDialog
       this.ofd.Multiselect = true;
@@ -152,11 +129,13 @@ namespace ImportarExcel
         foreach (String arquivo in ofd.FileNames)
         {
           txtImportar.Text += arquivo;
-          // cria um PictureBox
+          
           try
           {
-            //LerExcel(arquivo, "Gestão", "INDICADORES MENSAIS DE GESTÃO");
+            cmbPlanilhas.Items.Clear();
+
             var planilhas = GetExcelSheetNames(arquivo);
+
             int i = 0;
             foreach (var item in planilhas)
             {
@@ -166,8 +145,8 @@ namespace ImportarExcel
                 i++;
               }
             }
-            
-            
+
+
           }
           catch (SecurityException ex)
           {
