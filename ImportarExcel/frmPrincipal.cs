@@ -98,5 +98,12 @@ namespace ImportarExcel
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void empresasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEmpresas frm = new frmEmpresas();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

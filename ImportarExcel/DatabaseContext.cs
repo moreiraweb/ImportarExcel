@@ -16,7 +16,8 @@ namespace ImportarExcel
         public DatabaseContext() :
             base(new SQLiteConnection()
             {
-                ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Desenvolvimento\\Moreiraweb\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
+                //ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Desenvolvimento\\Moreiraweb\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
+                ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Testes\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
             }, true)
         {
         }
@@ -32,6 +33,7 @@ namespace ImportarExcel
         public DbSet<DePara> DeParas { get; set; }
         public DbSet<Parametros> Parametros { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Empresas> Empresas { get; set; }
 
 
     }

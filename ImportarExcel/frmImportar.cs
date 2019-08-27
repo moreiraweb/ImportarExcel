@@ -1,4 +1,6 @@
-﻿using ImportarExcel.Repository.Interfaces;
+﻿using ImportarExcel.Domain;
+using ImportarExcel.Repository;
+using ImportarExcel.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +17,10 @@ namespace ImportarExcel
 {
     public partial class frmImportar : Form
     {
-        private string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=No;IMEX=1\";";
-        
+
         public frmImportar()
         {
             InitializeComponent();
-
-           
-            
 
         }
 
@@ -37,10 +35,11 @@ namespace ImportarExcel
                 sql = "select * from [" + planilha + "] ";
             else
                 sql = sqlCustom;
-            //select [EFETIVO DE PESSOAL - MENSAL], F6, F12, F18, F19, F24, F30, F36, F37, F42, F48, F54, F60, F61, F66, F72, F73, F79, F80, 
-            //F85, F86, F87, F92, F93, F98, F99, F100  from[Efetivo$]
+            //select [EFETIVO DE PESSOAL - MENSAL], F6, F12, F18, F19, F24, F30, F36, F37, F42, F48, F54, F60, F61, F66, F72, F73, F79, F80, F85, F86, F87, F92, F93, F98, F99, F100  from[Efetivo$] where F6<>''
+            //select [EFETIVO DE PESSOAL - MENSAL], F6, F12, F18, F24, F30, F36, F42, F48, F54, F60,  F66, F73, F80, F86, F87, F93, F99  from[Efetivo$] where F6<>''
+            //select [EFETIVO DE PESSOAL - MENSAL], F6, F12, F24, F30, F42, F48 from[Efetivo$] where F6<>''
             //string sql = "select [EFETIVO DE PESSOAL - MENSAL], f6,f12, f18, trim(f24) from [Efetivo$] where f24<>'' ";
-
+            LerPlanilhaEfetivo(arquivo, 2018, 1);
             try
             {
 
@@ -62,6 +61,158 @@ namespace ImportarExcel
             }
 
 
+        }
+
+        private void LerPlanilhaEfetivo(string arquivo, int ano, int mes)
+        {
+            string planilha = "Efetivo";
+            string sql = string.Empty;
+            DataTable result = null;
+            List<CamposBanco> lista = new List<CamposBanco>();
+            try
+            {
+
+                #region Ordem 1
+
+                sql = MonteSql("110", 1, "F24", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 2
+
+                sql = MonteSql("111", 2, "F6", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 3
+
+                sql = MonteSql("112", 3, "F12", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 4
+
+                sql = MonteSql("120", 4, "F48", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 5
+
+                sql = MonteSql("121", 5, "F30", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 6
+
+                sql = MonteSql("122", 6, "F42", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 7
+
+                sql = MonteSql("130", 7, "F73", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 8
+
+                sql = MonteSql("131", 8, "F54", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 9
+
+                sql = MonteSql("132", 9, "F60", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 10
+
+                sql = MonteSql("133", 10, "F66", planilha);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+             
+
+                foreach (var item in lista)
+                {
+                    //FAZER A IMPORTACAO
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public string MonteSql(string classificacao, int ordem, string campoExcel, string planilha)
+        {
+            return "SELECT " + classificacao + " as CODDISCRI, " +
+                    "[EFETIVO DE PESSOAL - MENSAL] as EMPRESA, " +
+                    ordem + " as Ordem, " +
+                    campoExcel + " as QTD " +
+                   "FROM["+ planilha + "$] where " + campoExcel + "<>''";
+        }
+
+        public List<CamposBanco> PreencherObjeto(List<CamposBanco> listaCampo, DataTable result, int ano, int mes)
+        {
+
+            try
+            {
+                EmpresasRepository empresasRepository = new EmpresasRepository();
+                CamposBanco camposBanco;
+                foreach (var item in result.Rows)
+                {
+                    if (((DataRow)item).ItemArray[1].ToString() != "")
+                    {
+                        var empresa = empresasRepository.Get(((DataRow)item).ItemArray[1].ToString());
+                        if (empresa == null)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            camposBanco = new CamposBanco();
+                            camposBanco.CODDISCRI = int.Parse(((DataRow)item).ItemArray[0].ToString());
+                            camposBanco.CODEMPRESA = empresa.Codigo;
+                            camposBanco.ORDEM = int.Parse(((DataRow)item).ItemArray[2].ToString());
+                            camposBanco.ANO = ano;
+                            camposBanco.CDMES = mes;
+                            camposBanco.QTD = double.Parse(((DataRow)item).ItemArray[3].ToString());
+                            listaCampo.Add(camposBanco);
+                        }
+
+                    }
+                }
+                return listaCampo;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
 
@@ -116,7 +267,7 @@ namespace ImportarExcel
             //define as propriedades do controle 
             //OpenFileDialog
             this.ofd.Multiselect = true;
-            this.ofd.Title = "Selecionar Fotos";
+            this.ofd.Title = "Selecionar Arquivo";
             ofd.InitialDirectory = @"C:\";
             //filtra para exibir somente arquivos de imagens
             ofd.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
