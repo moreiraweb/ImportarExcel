@@ -43,6 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnMigrar = new System.Windows.Forms.Button();
             this.pgbMigracao = new System.Windows.Forms.ProgressBar();
+            this.btnFechar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             // 
             // btnSelecionarArquivo
             // 
-            this.btnSelecionarArquivo.Location = new System.Drawing.Point(457, 78);
+            this.btnSelecionarArquivo.Location = new System.Drawing.Point(457, 77);
             this.btnSelecionarArquivo.Name = "btnSelecionarArquivo";
             this.btnSelecionarArquivo.Size = new System.Drawing.Size(133, 23);
             this.btnSelecionarArquivo.TabIndex = 4;
@@ -158,9 +159,9 @@
             // btnMigrar
             // 
             this.btnMigrar.BackColor = System.Drawing.SystemColors.Control;
-            this.btnMigrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMigrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMigrar.ForeColor = System.Drawing.Color.DarkRed;
-            this.btnMigrar.Location = new System.Drawing.Point(903, 14);
+            this.btnMigrar.Location = new System.Drawing.Point(903, 83);
             this.btnMigrar.Name = "btnMigrar";
             this.btnMigrar.Size = new System.Drawing.Size(133, 68);
             this.btnMigrar.TabIndex = 12;
@@ -175,11 +176,22 @@
             this.pgbMigracao.Size = new System.Drawing.Size(1062, 23);
             this.pgbMigracao.TabIndex = 13;
             // 
+            // btnFechar
+            // 
+            this.btnFechar.Location = new System.Drawing.Point(961, 527);
+            this.btnFechar.Name = "btnFechar";
+            this.btnFechar.Size = new System.Drawing.Size(75, 23);
+            this.btnFechar.TabIndex = 14;
+            this.btnFechar.Text = "Fechar";
+            this.btnFechar.UseVisualStyleBackColor = true;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
+            // 
             // frmImportar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1061, 604);
+            this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.pgbMigracao);
             this.Controls.Add(this.btnMigrar);
             this.Controls.Add(this.label4);
@@ -196,6 +208,7 @@
             this.Controls.Add(this.txtImportar);
             this.MaximizeBox = false;
             this.Name = "frmImportar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Importar Arquivo Excel";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
             this.ResumeLayout(false);
@@ -220,6 +233,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnMigrar;
         private System.Windows.Forms.ProgressBar pgbMigracao;
+        private System.Windows.Forms.Button btnFechar;
     }
 }
 

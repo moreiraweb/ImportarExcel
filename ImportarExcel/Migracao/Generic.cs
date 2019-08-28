@@ -58,5 +58,20 @@ namespace ImportarExcel.Migracao
                 throw;
             }
         }
+
+
+
+        public static void MigrarDados(List<CamposBanco> lista)
+        {
+            ParametrosRepository parametrosRepository = new ParametrosRepository();
+            var parametros = parametrosRepository.Get().FirstOrDefault();
+
+
+            DBConnectMysql dBConnectMysql = new DBConnectMysql(parametros.Server, parametros.DataBase, parametros.Usuario, parametros.Senha);
+
+            dBConnectMysql.Insert(lista);
+
+           
+        }
     }
 }

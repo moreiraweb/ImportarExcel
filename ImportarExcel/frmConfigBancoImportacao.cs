@@ -56,8 +56,9 @@ namespace ImportarExcel
 
             dgDados.Rows.Add(
                     entity.Id,
-                    entity.NomeBancoMigracao,
-                    entity.StringConexaoBancoMigracao);
+                    entity.Server,
+                    entity.DataBase,
+                    entity.Usuario);
         }
 
         private IEnumerable<Parametros> ListaFiltrada()
@@ -78,8 +79,10 @@ namespace ImportarExcel
         public Parametros PreencherObjeto(Parametros parametros)
         {
 
-            parametros.NomeBancoMigracao = txtNomeBanco.Text;
-            parametros.StringConexaoBancoMigracao = txtStringConexao.Text;
+            parametros.Server = txtServer.Text;
+            parametros.DataBase = txtDataBase.Text;
+            parametros.Usuario = txtUsuario.Text;
+            parametros.Senha = txtSenha.Text;
 
             return parametros;
 
@@ -127,9 +130,10 @@ namespace ImportarExcel
                 parametro = rep.Get(id);
 
                 lblId.Text = id.ToString();
-                txtNomeBanco.Text = parametro.NomeBancoMigracao;
-                txtStringConexao.Text = parametro.StringConexaoBancoMigracao;
-
+                txtServer.Text = parametro.Server;
+                txtDataBase.Text = parametro.DataBase;
+                txtUsuario.Text = parametro.Usuario;
+                txtSenha.Text = parametro.Senha;
             }
             catch (Exception ex)
             {

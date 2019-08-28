@@ -33,12 +33,12 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dgDados = new System.Windows.Forms.DataGridView();
+            this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNomePlanilha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNomePlanilha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgDados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,6 +94,22 @@
             this.dgDados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDados_CellContentClick);
             this.dgDados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDados_CellDoubleClick);
             // 
+            // colCodigo
+            // 
+            this.colCodigo.DataPropertyName = "Codigo";
+            this.colCodigo.HeaderText = "Id";
+            this.colCodigo.Name = "colCodigo";
+            this.colCodigo.ReadOnly = true;
+            this.colCodigo.Width = 50;
+            // 
+            // colNomePlanilha
+            // 
+            this.colNomePlanilha.DataPropertyName = "Nome";
+            this.colNomePlanilha.HeaderText = "Nome";
+            this.colNomePlanilha.Name = "colNomePlanilha";
+            this.colNomePlanilha.ReadOnly = true;
+            this.colNomePlanilha.Width = 200;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -134,22 +150,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // colCodigo
-            // 
-            this.colCodigo.DataPropertyName = "Codigo";
-            this.colCodigo.HeaderText = "Id";
-            this.colCodigo.Name = "colCodigo";
-            this.colCodigo.ReadOnly = true;
-            this.colCodigo.Width = 50;
-            // 
-            // colNomePlanilha
-            // 
-            this.colNomePlanilha.DataPropertyName = "Nome";
-            this.colNomePlanilha.HeaderText = "Nome";
-            this.colNomePlanilha.Name = "colNomePlanilha";
-            this.colNomePlanilha.ReadOnly = true;
-            this.colNomePlanilha.Width = 200;
-            // 
             // frmEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,6 +166,7 @@
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "frmEmpresas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Empresas";
             ((System.ComponentModel.ISupportInitialize)(this.dgDados)).EndInit();
             this.ResumeLayout(false);

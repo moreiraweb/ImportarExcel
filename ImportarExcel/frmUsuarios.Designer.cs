@@ -76,7 +76,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(476, 299);
+            this.btnSalvar.Location = new System.Drawing.Point(241, 60);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 4;
@@ -86,7 +86,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(557, 299);
+            this.btnCancelar.Location = new System.Drawing.Point(231, 297);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 5;
@@ -104,7 +104,7 @@
             this.dgDados.Location = new System.Drawing.Point(19, 89);
             this.dgDados.Name = "dgDados";
             this.dgDados.ReadOnly = true;
-            this.dgDados.Size = new System.Drawing.Size(613, 204);
+            this.dgDados.Size = new System.Drawing.Size(297, 204);
             this.dgDados.TabIndex = 6;
             this.dgDados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDados_CellContentClick);
             this.dgDados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDados_CellDoubleClick);
@@ -119,7 +119,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(557, 25);
+            this.button1.Location = new System.Drawing.Point(69, 297);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -129,7 +129,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(557, 56);
+            this.button2.Location = new System.Drawing.Point(150, 297);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 8;
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 332);
+            this.ClientSize = new System.Drawing.Size(347, 332);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgDados);
@@ -153,6 +153,7 @@
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "frmUsuarios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Usuários";
             ((System.ComponentModel.ISupportInitialize)(this.dgDados)).EndInit();
             this.ResumeLayout(false);

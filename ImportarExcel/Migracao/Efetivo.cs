@@ -22,7 +22,7 @@ namespace ImportarExcel.Migracao
             string sql = "select [EFETIVO DE PESSOAL - MENSAL],  F6, F12, F18, F19, F24, F30, F36, F37, F42, F48, F54, F60, F61, F66, F72, F73 from[Efetivo$] where F6<>''";
             return sql;
         }
-        public static void LerPlanilha(string arquivo, int ano, int mes)
+        public static List<CamposBanco> LerPlanilha(string arquivo, int ano, int mes)
         {
             string planilha = "Efetivo";
             string titleEmpresa = "[EFETIVO DE PESSOAL - MENSAL]";
@@ -113,12 +113,13 @@ namespace ImportarExcel.Migracao
                 #endregion
 
 
-
+                
                 foreach (var item in lista)
                 {
-                    //FAZER A IMPORTACAO
+                    
                 }
 
+                return lista;
 
             }
             catch (Exception ex)

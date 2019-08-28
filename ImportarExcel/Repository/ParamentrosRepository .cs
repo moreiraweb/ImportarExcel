@@ -10,7 +10,6 @@ namespace ImportarExcel.Repository
 {
     public class ParametrosRepository :  IParametrosRepository, IDisposable
     {
-        private readonly IParametrosRepository parametrosRepository;
         private readonly DatabaseContext context;
 
         public ParametrosRepository()
@@ -28,8 +27,10 @@ namespace ImportarExcel.Repository
         {
             var par = context.Parametros.Where(x => x.Id == Parametros.Id).FirstOrDefault();
 
-            par.NomeBancoMigracao = Parametros.NomeBancoMigracao;
-            par.StringConexaoBancoMigracao = Parametros.StringConexaoBancoMigracao;
+            par.Server = Parametros.Server;
+            par.DataBase = Parametros.DataBase;
+            par.Usuario = Parametros.Usuario;
+            par.Senha = Parametros.Senha;
             context.SaveChanges();
         }
 

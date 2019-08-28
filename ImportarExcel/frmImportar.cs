@@ -192,55 +192,61 @@ namespace ImportarExcel
         {
             try
             {
+                List<CamposBanco> listaMigracao = new List<CamposBanco>();
                 pgbMigracao.Maximum = 100;
                 pgbMigracao.Step = 1;
                 pgbMigracao.Value = 0;
 
                 ///
-                /// MIGRAR PLANILHA EFETIVO
+                /// PLANILHA EFETIVO
                 ///
-                Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text));
+                listaMigracao.AddRange(Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
                 pgbMigracao.Value += 15;
 
                 ///
-                /// MIGRAR PLANILHA GESTÃO
+                /// PLANILHA GESTÃO
                 ///
-                Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text));
+                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
                 pgbMigracao.Value += 15;
 
                 ///
-                /// MIGRAR PLANILHA XXX
+                /// PLANILHA XXX
                 ///
-                Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text));
+                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
                 pgbMigracao.Value += 15;
 
                 ///
-                /// MIGRAR PLANILHA 444
+                /// 444
                 ///
-                Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text));
-                pgbMigracao.Value += 15;
-
-
-                ///
-                /// MIGRAR PLANILHA 555
-                ///
-                Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text));
+                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
                 pgbMigracao.Value += 15;
 
 
                 ///
-                /// MIGRAR PLANILHA 6666
+                /// PLANILHA 555
                 ///
-                Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text));
+                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
                 pgbMigracao.Value += 15;
 
 
                 ///
-                /// MIGRAR PLANILHA 777
+                /// PLANILHA 6666
                 ///
-                Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text));
-                pgbMigracao.Value += 10;
+                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                pgbMigracao.Value += 15;
 
+
+                ///
+                /// PLANILHA 777
+                ///
+                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                pgbMigracao.Value += 5;
+
+                ///
+                /// MIGRAR PARA O BANCO DE DADOS
+                ///
+                Generic.MigrarDados(listaMigracao);
+                pgbMigracao.Value += 5;
 
                 MessageBox.Show("MIGRAÇÃO CONCLUÍDA COM SUCESSO...");
             }
@@ -250,6 +256,13 @@ namespace ImportarExcel
                 MessageBox.Show("OCORREU UM ERRO NA MIGRAÇÃO: " + ex.Message);
             }
            
+        }
+
+       
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

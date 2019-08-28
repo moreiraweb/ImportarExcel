@@ -18,7 +18,7 @@ namespace ImportarExcel.Migracao
             string sql = "SELECT [INDICADORES MENSAIS DE GESTÃO DE PESSOAL] AS EMPRESA, F6, F12, F19, F26, F32, F39, F46, F55, F64, F73, F80, F89 FROM [Gestão$] WHERE F6<>''";
             return sql;
         }
-        public static void LerPlanilha(string arquivo, int ano, int mes)
+        public static List<CamposBanco> LerPlanilha(string arquivo, int ano, int mes)
         {
             string planilha = "Gestão";
             string titleEmpresa = "[INDICADORES MENSAIS DE GESTÃO DE PESSOAL]";
@@ -123,7 +123,7 @@ namespace ImportarExcel.Migracao
                     //FAZER A IMPORTACAO
                 }
 
-
+                return lista;
             }
             catch (Exception ex)
             {
