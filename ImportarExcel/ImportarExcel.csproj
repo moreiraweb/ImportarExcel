@@ -119,6 +119,9 @@
     <Compile Include="frmSobre.Designer.cs">
       <DependentUpon>frmSobre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migracao\Efetivo.cs" />
+    <Compile Include="Migracao\Generic.cs" />
+    <Compile Include="Migracao\Gestao.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Interfaces\IDeParaRepository .cs" />
