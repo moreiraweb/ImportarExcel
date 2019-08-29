@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text;
@@ -18,10 +19,13 @@ namespace ImportarExcel
 {
     public partial class frmImportar : Form
     {
+        private bool ehPasta = false;
 
         public frmImportar()
         {
             InitializeComponent();
+            txtImportar.Text = String.Empty;
+            lblQtdArquivo.Text = string.Empty;
 
         }
 
@@ -31,7 +35,7 @@ namespace ImportarExcel
         {
 
 
-            string sql;
+            string sql = string.Empty;
             if (sqlCustom == "")
             {
 
@@ -39,14 +43,20 @@ namespace ImportarExcel
                     sql = Efetivo.Sql();
                 else if (planilha == "Gestão$")
                     sql = Gestao.Sql();
-                else
+                else if (planilha == "'Absenteísmo até 15 dias$'")
+                    sql = AbsenteismoQuinzeDias.Sql();
+                else if (planilha != "")
                     sql = "select * from [" + planilha + "] ";
+                else
+                    return;
+
+
             }
             else
             {
                 sql = sqlCustom;
             }
-            
+
             try
             {
 
@@ -54,12 +64,6 @@ namespace ImportarExcel
 
                 dgvDados.DataSource = null;
                 dgvDados.DataSource = result;
-
-                /////Para preencher o objto e migrar para o banco
-                //foreach (DataRow linha in ds.Tables[0].Rows)
-                //{
-                //  var linha1 = linha;
-                //}
 
             }
             catch (Exception ex)
@@ -175,6 +179,8 @@ namespace ImportarExcel
                                                    " ele pode estar corrompido.\n\nErro reportado : " + ex.Message);
                     }
                 }
+                lblQtdArquivo.Text = string.Empty;
+                ehPasta = false;
             }
         }
 
@@ -189,6 +195,69 @@ namespace ImportarExcel
         }
 
         private void btnMigrar_Click(object sender, EventArgs e)
+        {
+            if (txtImportar.Text == string.Empty)
+            {
+                MessageBox.Show("Selecione uma pasta ou arquivo.");
+                return;
+            }
+
+            var confirmResult = MessageBox.Show("Confirma a importação?",
+                                     "ATENÇÃO!!!",
+                                     MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.No)
+                return;
+
+            if (ehPasta)
+                MigrarPorPasta();
+            else
+                MigrarPorArquivo();
+
+            lblQtdArquivo.Text = string.Empty;
+            txtImportar.Text = string.Empty;
+
+        }
+
+        private void MigrarPorPasta()
+        {
+            try
+            {
+                pgbMigracao.Maximum = 100;
+                pgbMigracao.Step = 1;
+                pgbMigracao.Value = 0;
+
+
+                List<CamposBanco> listaMigracao = new List<CamposBanco>();
+                DirectoryInfo dir = new DirectoryInfo("" + txtImportar.Text + "");
+
+                string s = @"" + dir + "";
+                System.IO.DirectoryInfo d = new System.IO.DirectoryInfo(s);
+
+                var addProgess = 100 / (d.GetFiles("*.xls").Length);
+
+                foreach (FileInfo filesnames in dir.GetFiles("*.xls"))
+                {
+
+                    var mes = int.Parse(filesnames.Name.Substring(0, 2));
+                    var ano = int.Parse(filesnames.Name.Substring(2, 4));
+                    listaMigracao.AddRange(Efetivo.LerPlanilha(filesnames.FullName, ano, mes));
+                    listaMigracao.AddRange(Gestao.LerPlanilha(filesnames.FullName, ano, mes));
+                    //listaMigracao.AddRange(AbsenteismoQuinzeDias.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+
+                    pgbMigracao.Value += addProgess;
+                }
+
+                MessageBox.Show("MIGRAÇÃO CONCLUÍDA COM SUCESSO...");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("OCORREU UM ERRO NA MIGRAÇÃO: " + ex.Message);
+            }
+        }
+
+
+        private void MigrarPorArquivo()
         {
             try
             {
@@ -210,9 +279,9 @@ namespace ImportarExcel
                 pgbMigracao.Value += 15;
 
                 ///
-                /// PLANILHA XXX
+                /// PLANILHA Absenteismo até Quinze Dias
                 ///
-                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                //listaMigracao.AddRange(AbsenteismoQuinzeDias.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
                 pgbMigracao.Value += 15;
 
                 ///
@@ -255,14 +324,53 @@ namespace ImportarExcel
 
                 MessageBox.Show("OCORREU UM ERRO NA MIGRAÇÃO: " + ex.Message);
             }
-           
         }
 
-       
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSelecionarPasta_Click(object sender, EventArgs e)
+        {
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+
+                DirectoryInfo dir = new DirectoryInfo("" + fbd.SelectedPath + "");
+
+                FileInfo[] arquivos = dir.GetFiles(".xls");
+                {
+                    if (Directory.GetFiles(dir.ToString(), "*.xls").Length < 1)
+                    {
+                        MessageBox.Show("Por favor, verifique se o diretório escolhido possui arquivos no formato válido");
+                        return;
+                    }
+                    else
+                    {
+                        #region : Verifica Quantidade de Arquivos .xls no diretório :
+
+                        int files;
+                        string s = @"" + dir + "";
+                        System.IO.DirectoryInfo d = new System.IO.DirectoryInfo(s);
+
+                        files = d.GetFiles("*.xls").Length;
+                        //MessageBox.Show("O diretorio selecionado possui " + files + " arquivos .xls");
+
+                        txtImportar.Text = fbd.SelectedPath;
+
+                        lblQtdArquivo.Text = files.ToString() + " Arquivo(s) selecionado(s).";
+
+                        #endregion
+
+                        ehPasta = true;
+                    }
+
+
+
+                }
+            }
         }
     }
 }

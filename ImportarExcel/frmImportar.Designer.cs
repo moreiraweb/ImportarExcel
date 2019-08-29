@@ -29,7 +29,6 @@
     private void InitializeComponent()
     {
             this.ofd = new System.Windows.Forms.OpenFileDialog();
-            this.txtImportar = new System.Windows.Forms.TextBox();
             this.btnSelecionarArquivo = new System.Windows.Forms.Button();
             this.dgvDados = new System.Windows.Forms.DataGridView();
             this.cmbPlanilhas = new System.Windows.Forms.ComboBox();
@@ -44,6 +43,11 @@
             this.btnMigrar = new System.Windows.Forms.Button();
             this.pgbMigracao = new System.Windows.Forms.ProgressBar();
             this.btnFechar = new System.Windows.Forms.Button();
+            this.fbd = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnSelecionarPasta = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtImportar = new System.Windows.Forms.Label();
+            this.lblQtdArquivo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,16 +55,9 @@
             // 
             this.ofd.FileName = "openFileDialog1";
             // 
-            // txtImportar
-            // 
-            this.txtImportar.Location = new System.Drawing.Point(13, 79);
-            this.txtImportar.Name = "txtImportar";
-            this.txtImportar.Size = new System.Drawing.Size(438, 20);
-            this.txtImportar.TabIndex = 3;
-            // 
             // btnSelecionarArquivo
             // 
-            this.btnSelecionarArquivo.Location = new System.Drawing.Point(457, 77);
+            this.btnSelecionarArquivo.Location = new System.Drawing.Point(128, 36);
             this.btnSelecionarArquivo.Name = "btnSelecionarArquivo";
             this.btnSelecionarArquivo.Size = new System.Drawing.Size(133, 23);
             this.btnSelecionarArquivo.TabIndex = 4;
@@ -71,15 +68,15 @@
             // dgvDados
             // 
             this.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDados.Location = new System.Drawing.Point(12, 157);
+            this.dgvDados.Location = new System.Drawing.Point(12, 181);
             this.dgvDados.Name = "dgvDados";
-            this.dgvDados.Size = new System.Drawing.Size(1024, 251);
+            this.dgvDados.Size = new System.Drawing.Size(1024, 227);
             this.dgvDados.TabIndex = 2;
             // 
             // cmbPlanilhas
             // 
             this.cmbPlanilhas.FormattingEnabled = true;
-            this.cmbPlanilhas.Location = new System.Drawing.Point(12, 130);
+            this.cmbPlanilhas.Location = new System.Drawing.Point(11, 154);
             this.cmbPlanilhas.Name = "cmbPlanilhas";
             this.cmbPlanilhas.Size = new System.Drawing.Size(296, 21);
             this.cmbPlanilhas.TabIndex = 3;
@@ -88,7 +85,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 114);
+            this.label1.Location = new System.Drawing.Point(11, 138);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 4;
@@ -186,11 +183,57 @@
             this.btnFechar.UseVisualStyleBackColor = true;
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
+            // btnSelecionarPasta
+            // 
+            this.btnSelecionarPasta.Location = new System.Drawing.Point(298, 36);
+            this.btnSelecionarPasta.Name = "btnSelecionarPasta";
+            this.btnSelecionarPasta.Size = new System.Drawing.Size(133, 23);
+            this.btnSelecionarPasta.TabIndex = 15;
+            this.btnSelecionarPasta.Text = "Selecionar Pasta";
+            this.btnSelecionarPasta.UseVisualStyleBackColor = true;
+            this.btnSelecionarPasta.Click += new System.EventHandler(this.btnSelecionarPasta_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(267, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "OU";
+            // 
+            // txtImportar
+            // 
+            this.txtImportar.AutoSize = true;
+            this.txtImportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImportar.ForeColor = System.Drawing.Color.Red;
+            this.txtImportar.Location = new System.Drawing.Point(13, 72);
+            this.txtImportar.Name = "txtImportar";
+            this.txtImportar.Size = new System.Drawing.Size(191, 25);
+            this.txtImportar.TabIndex = 17;
+            this.txtImportar.Text = "PASTA/ARQUIVO";
+            // 
+            // lblQtdArquivo
+            // 
+            this.lblQtdArquivo.AutoSize = true;
+            this.lblQtdArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdArquivo.ForeColor = System.Drawing.Color.Red;
+            this.lblQtdArquivo.Location = new System.Drawing.Point(41, 98);
+            this.lblQtdArquivo.Name = "lblQtdArquivo";
+            this.lblQtdArquivo.Size = new System.Drawing.Size(163, 25);
+            this.lblQtdArquivo.TabIndex = 18;
+            this.lblQtdArquivo.Text = "QTD ARQUIVO";
+            // 
             // frmImportar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1061, 604);
+            this.Controls.Add(this.lblQtdArquivo);
+            this.Controls.Add(this.txtImportar);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnSelecionarPasta);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.pgbMigracao);
             this.Controls.Add(this.btnMigrar);
@@ -205,7 +248,6 @@
             this.Controls.Add(this.cmbPlanilhas);
             this.Controls.Add(this.dgvDados);
             this.Controls.Add(this.btnSelecionarArquivo);
-            this.Controls.Add(this.txtImportar);
             this.MaximizeBox = false;
             this.Name = "frmImportar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -219,7 +261,6 @@
     #endregion
 
     private System.Windows.Forms.OpenFileDialog ofd;
-    private System.Windows.Forms.TextBox txtImportar;
     private System.Windows.Forms.Button btnSelecionarArquivo;
     private System.Windows.Forms.DataGridView dgvDados;
     private System.Windows.Forms.ComboBox cmbPlanilhas;
@@ -234,6 +275,11 @@
         private System.Windows.Forms.Button btnMigrar;
         private System.Windows.Forms.ProgressBar pgbMigracao;
         private System.Windows.Forms.Button btnFechar;
+        private System.Windows.Forms.FolderBrowserDialog fbd;
+        private System.Windows.Forms.Button btnSelecionarPasta;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label txtImportar;
+        private System.Windows.Forms.Label lblQtdArquivo;
     }
 }
 

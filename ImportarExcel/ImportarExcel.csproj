@@ -138,6 +138,7 @@
       <DependentUpon>frmSobre.cs</DependentUpon>
     </Compile>
     <Compile Include="Migracao\DBConnectMysql.cs" />
+    <Compile Include="Migracao\AbsenteismoQuinzeDias.cs" />
     <Compile Include="Migracao\Efetivo.cs" />
     <Compile Include="Migracao\Generic.cs" />
     <Compile Include="Migracao\Gestao.cs" />
