@@ -13,11 +13,19 @@ namespace ImportarExcel.Migracao
     {
         public static string MonteSql(string classificacao, int ordem, string campoExcel, string planilha, string titleEmpresa)
         {
-            return "SELECT " + classificacao + " as CODDISCRI, " +
-                    titleEmpresa + " AS EMPRESA, " +
-                    ordem + " as Ordem, " +
-                    campoExcel + " as QTD " +
-                   "FROM[" + planilha + "$] where " + campoExcel + "<>''";
+
+            if (planilha.IndexOf("'") == -1)
+                planilha = planilha + "$";
+            else
+                planilha = "'" + planilha.Replace("'","") + "$'";
+
+            string sql = "SELECT " + classificacao + " as CODDISCRI, " +
+                                titleEmpresa + " AS EMPRESA, " +
+                                ordem + " as Ordem, " +
+                                campoExcel + " as QTD " +
+                               "FROM[" + planilha + "] where " + campoExcel + "<>''";
+
+            return sql;
         }
 
 
@@ -73,5 +81,8 @@ namespace ImportarExcel.Migracao
 
            
         }
+
+      
+        
     }
 }

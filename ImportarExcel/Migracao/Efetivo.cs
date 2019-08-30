@@ -19,7 +19,12 @@ namespace ImportarExcel.Migracao
 
         public static String Sql()
         {
-            string sql = "select [EFETIVO DE PESSOAL - MENSAL],  F6, F12, F18, F19, F24, F30, F36, F37, F42, F48, F54, F60, F61, F66, F72, F73 from[Efetivo$] where F6<>''";
+            string sql = "SELECT [EFETIVO DE PESSOAL - MENSAL],  " +
+                                "F6, F12, F18, F24, F30, F36, F42, " +
+                                "F48, F54, F60, F66, F73, F80, F87, " +
+                                "F93, F99 " +
+                         "FROM [Efetivo$] WHERE F6<>''";
+            //string sql = "select * from [Efetivo$] where F6<>''";
             return sql;
         }
         public static List<CamposBanco> LerPlanilha(string arquivo, int ano, int mes)

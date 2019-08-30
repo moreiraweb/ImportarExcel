@@ -105,5 +105,12 @@ namespace ImportarExcel
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void logsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogs frm = new frmLogs();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

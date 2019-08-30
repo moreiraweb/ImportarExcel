@@ -14,9 +14,10 @@ namespace ImportarExcel.Domain
         public int Id { get; set; }
 
        
-        public string IdUsuario { get; set; }
+        public string Usuario { get; set; }
         public DateTime DataHoraEnvio { get; set; }
         public string NomeDocumento { get; set; }
         public string Status { get; set; }
+        public string MsgErro { get; set; }
     }
 }

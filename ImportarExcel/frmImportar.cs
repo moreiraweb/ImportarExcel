@@ -221,6 +221,7 @@ namespace ImportarExcel
 
         private void MigrarPorPasta()
         {
+
             try
             {
                 pgbMigracao.Maximum = 100;
@@ -238,15 +239,39 @@ namespace ImportarExcel
 
                 foreach (FileInfo filesnames in dir.GetFiles("*.xls"))
                 {
+                    string nomePlanilha = string.Empty;
 
-                    var mes = int.Parse(filesnames.Name.Substring(0, 2));
-                    var ano = int.Parse(filesnames.Name.Substring(2, 4));
-                    listaMigracao.AddRange(Efetivo.LerPlanilha(filesnames.FullName, ano, mes));
-                    listaMigracao.AddRange(Gestao.LerPlanilha(filesnames.FullName, ano, mes));
-                    //listaMigracao.AddRange(AbsenteismoQuinzeDias.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                    try
+                    {
 
-                    pgbMigracao.Value += addProgess;
+                        var mes = int.Parse(filesnames.Name.Substring(0, 2));
+                        var ano = int.Parse(filesnames.Name.Substring(2, 4));
+
+                        listaMigracao.AddRange(Efetivo.LerPlanilha(filesnames.FullName, ano, mes));
+                        nomePlanilha = "Efetivo";
+                        GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+
+                        listaMigracao.AddRange(Gestao.LerPlanilha(filesnames.FullName, ano, mes));
+                        nomePlanilha = "Gestao";
+                        GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha Gestao OK", "");
+
+                        listaMigracao.AddRange(AbsenteismoQuinzeDias.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                        nomePlanilha = "AbsenteismoQuinzeDias";
+                        GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha AbsenteismoQuinzeDias OK", "");
+
+
+                        pgbMigracao.Value += addProgess;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        GravarLog(filesnames.Name, nomePlanilha, "Erro ao ler a Planilha", ex.Message + " - StackTrace:" + ex.StackTrace);
+                        continue;
+                    }
+
                 }
+
+                Generic.MigrarDados(listaMigracao);
 
                 MessageBox.Show("MIGRAÇÃO CONCLUÍDA COM SUCESSO...");
             }
@@ -259,6 +284,7 @@ namespace ImportarExcel
 
         private void MigrarPorArquivo()
         {
+            string nomePlanilha = string.Empty;
             try
             {
                 List<CamposBanco> listaMigracao = new List<CamposBanco>();
@@ -270,31 +296,50 @@ namespace ImportarExcel
                 /// PLANILHA EFETIVO
                 ///
                 listaMigracao.AddRange(Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+
+                nomePlanilha = "Efetivo";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+
                 pgbMigracao.Value += 15;
 
                 ///
                 /// PLANILHA GESTÃO
                 ///
                 listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+
+                nomePlanilha = "Gestao";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+
                 pgbMigracao.Value += 15;
 
                 ///
                 /// PLANILHA Absenteismo até Quinze Dias
                 ///
-                //listaMigracao.AddRange(AbsenteismoQuinzeDias.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(AbsenteismoQuinzeDias.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+
+                nomePlanilha = "AbsenteismoQuinzeDias";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+
                 pgbMigracao.Value += 15;
 
                 ///
                 /// 444
                 ///
                 listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
-                pgbMigracao.Value += 15;
 
+                nomePlanilha = "Gestao";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+
+                pgbMigracao.Value += 15;
 
                 ///
                 /// PLANILHA 555
                 ///
                 listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+
+                nomePlanilha = "Gestao";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+
                 pgbMigracao.Value += 15;
 
 
@@ -302,6 +347,10 @@ namespace ImportarExcel
                 /// PLANILHA 6666
                 ///
                 listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+
+                nomePlanilha = "Gestao";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+
                 pgbMigracao.Value += 15;
 
 
@@ -309,7 +358,11 @@ namespace ImportarExcel
                 /// PLANILHA 777
                 ///
                 listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
-                pgbMigracao.Value += 5;
+
+                nomePlanilha = "Gestao";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+
+                pgbMigracao.Value += 15;
 
                 ///
                 /// MIGRAR PARA O BANCO DE DADOS
@@ -321,11 +374,17 @@ namespace ImportarExcel
             }
             catch (Exception ex)
             {
+                GravarLog(txtImportar.Text, nomePlanilha, "Erro ao ler a Planilha", ex.Message + " - StackTrace:" + ex.StackTrace);
 
                 MessageBox.Show("OCORREU UM ERRO NA MIGRAÇÃO: " + ex.Message);
             }
         }
 
+        private void GravarLog(string nomeArquivo, string planilha, string status, string msgErro)
+        {
+            var log = new Logs() { DataHoraEnvio = DateTime.Now, Usuario = "adm", NomeDocumento = planilha, Status = status, MsgErro = msgErro };
+            new LogsRepository().Adicionar(log);
+        }
 
         private void btnFechar_Click(object sender, EventArgs e)
         {

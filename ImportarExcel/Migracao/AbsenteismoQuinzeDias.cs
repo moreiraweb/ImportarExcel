@@ -21,9 +21,8 @@ namespace ImportarExcel.Migracao
         {
             string sql = "SELECT [INDICADORES MENSAIS DE ABSENTEÍSMO - MEDICINA DO TRABALHO_ATÉ 15] AS EMPRESA, " +
                                 "F6, F12, F18, F24, F31, F37, F44, F50, F57, F63, F70, F76, F83, F88, F95 " +
-                         " FROM ['Absenteísmo até 15 dias$'] WHERE F6<>''";
+                         " FROM ['Absenteísmo até 15 dias$'] WHERE F6<>'' ";
             
-           // string sql = "select * from['Absenteísmo até 15 dias$'] ";
             return sql;
         }
         public static List<CamposBanco> LerPlanilha(string arquivo, int ano, int mes)
@@ -33,6 +32,7 @@ namespace ImportarExcel.Migracao
             string sql = string.Empty;
             DataTable result = null;
             List<CamposBanco> lista = new List<CamposBanco>();
+
             try
             {
 
