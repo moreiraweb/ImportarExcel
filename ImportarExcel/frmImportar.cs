@@ -44,7 +44,15 @@ namespace ImportarExcel
                 else if (planilha == "Gestão$")
                     sql = Gestao.Sql();
                 else if (planilha == "'Absenteísmo até 15 dias$'")
-                    sql = AbsenteismoQuinzeDias.Sql();
+                    sql = AbsenteismoAteQuinzeDias.Sql();
+                else if (planilha == "'Absent + 15 dias e até 6 meses $'")
+                    sql = AbsenteismoMaisQuinzeDiasAteSeisMeses.Sql(); 
+                else if (planilha == "'Absent + de  6 meses$'")
+                    sql = AbsenteismoMaisSeisMeses.Sql();
+                else if (planilha == "'Acidentes Próprio$'")
+                    sql = AcidenteProprio.Sql();
+                else if (planilha == "'Acidentes Terceiros$'")
+                    sql = AcidenteTerceiro.Sql();
                 else if (planilha != "")
                     sql = "select * from [" + planilha + "] ";
                 else
@@ -255,7 +263,7 @@ namespace ImportarExcel
                         nomePlanilha = "Gestao";
                         GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha Gestao OK", "");
 
-                        listaMigracao.AddRange(AbsenteismoQuinzeDias.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                        listaMigracao.AddRange(AbsenteismoAteQuinzeDias.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
                         nomePlanilha = "AbsenteismoQuinzeDias";
                         GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha AbsenteismoQuinzeDias OK", "");
 
@@ -315,54 +323,54 @@ namespace ImportarExcel
                 ///
                 /// PLANILHA Absenteismo até Quinze Dias
                 ///
-                listaMigracao.AddRange(AbsenteismoQuinzeDias.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(AbsenteismoAteQuinzeDias.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
 
                 nomePlanilha = "AbsenteismoQuinzeDias";
-                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AbsenteismoAteQuinzeDias OK", "");
 
                 pgbMigracao.Value += 15;
 
-                ///
-                /// 444
-                ///
-                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                /////
+                ///// PLANILHA Absenteismo Mais Quinze Dias Ate Seis Meses
+                /////
+                listaMigracao.AddRange(AbsenteismoMaisQuinzeDiasAteSeisMeses.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
 
-                nomePlanilha = "Gestao";
-                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
-
-                pgbMigracao.Value += 15;
-
-                ///
-                /// PLANILHA 555
-                ///
-                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
-
-                nomePlanilha = "Gestao";
-                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+                nomePlanilha = "AbsenteismoAteQuinzeDias";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AbsenteismoMaisQuinzeDiasAteSeisMeses OK", "");
 
                 pgbMigracao.Value += 15;
 
+                /////
+                ///// PLANILHA AbsenteismoMaisSeisMeses
+                /////
+                listaMigracao.AddRange(AbsenteismoMaisSeisMeses.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
 
-                ///
-                /// PLANILHA 6666
-                ///
-                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
-
-                nomePlanilha = "Gestao";
-                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+                nomePlanilha = "AbsenteismoMaisSeisMeses";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AbsenteismoMaisSeisMeses OK", "");
 
                 pgbMigracao.Value += 15;
 
 
-                ///
-                /// PLANILHA 777
-                ///
-                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                /////
+                ///// PLANILHA AcidenteProprio
+                /////
+                listaMigracao.AddRange(AcidenteProprio.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
 
-                nomePlanilha = "Gestao";
-                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
+                nomePlanilha = "AcidenteProprio";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AcidenteProprio OK", "");
 
                 pgbMigracao.Value += 15;
+
+
+                /////
+                ///// PLANILHA 777
+                /////
+                listaMigracao.AddRange(AcidenteTerceiro.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+
+                nomePlanilha = "AcidenteTerceiro";
+                GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AcidenteTerceiro OK", "");
+
+                pgbMigracao.Value += 5;
 
                 ///
                 /// MIGRAR PARA O BANCO DE DADOS

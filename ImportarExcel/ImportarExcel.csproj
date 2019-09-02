@@ -143,8 +143,12 @@
     <Compile Include="frmSobre.Designer.cs">
       <DependentUpon>frmSobre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migracao\AcidenteTerceiro.cs" />
+    <Compile Include="Migracao\AcidenteProprio.cs" />
+    <Compile Include="Migracao\AbsenteismoMaisSeisMeses.cs" />
+    <Compile Include="Migracao\AbsenteismoMaisQuinzeDiasAteSeisMeses.cs" />
     <Compile Include="Migracao\DBConnectMysql.cs" />
-    <Compile Include="Migracao\AbsenteismoQuinzeDias.cs" />
+    <Compile Include="Migracao\AbsenteismoAteQuinzeDias.cs" />
     <Compile Include="Migracao\Efetivo.cs" />
     <Compile Include="Migracao\Generic.cs" />
     <Compile Include="Migracao\Gestao.cs" />

@@ -140,11 +140,6 @@ namespace ImportarExcel.Migracao
 
 
 
-                foreach (var item in lista)
-                {
-                    //FAZER A IMPORTACAO
-                }
-
                 return lista;
             }
             catch (Exception ex)

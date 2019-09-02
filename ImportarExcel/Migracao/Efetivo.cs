@@ -119,11 +119,6 @@ namespace ImportarExcel.Migracao
 
 
                 
-                foreach (var item in lista)
-                {
-                    
-                }
-
                 return lista;
 
             }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ImportarExcel.Migracao
 {
-    public static class AbsenteismoQuinzeDias
+    public static class AbsenteismoAteQuinzeDias
     {
 
         //select [AbsenteismoQuinzeDias DE PESSOAL - MENSAL], F6, F12, F18, F19, F24, F30, F36, F37, F42, F48, F54, F60, F61, F66, F72, F73, F79, F80, F85, F86, F87, F92, F93, F98, F99, F100  from[Absenteísmo até 15 dias$] where F6<>''
@@ -20,7 +20,7 @@ namespace ImportarExcel.Migracao
         public static String Sql()
         {
             string sql = "SELECT [INDICADORES MENSAIS DE ABSENTEÍSMO - MEDICINA DO TRABALHO_ATÉ 15] AS EMPRESA, " +
-                                "F6, F12, F18, F24, F31, F37, F44, F50, F57, F63, F70, F76, F83, F88, F95 " +
+                                "F6, F12, F24, F37, F50, F63, F76, F88 " +
                          " FROM ['Absenteísmo até 15 dias$'] WHERE F6<>'' ";
             
             return sql;
@@ -52,15 +52,7 @@ namespace ImportarExcel.Migracao
 
                 #endregion
 
-                #region Ordem xxx (Não definida na planilha provavel 34)
-
-                sql = Generic.MonteSql("234", 000, "F18", planilha, titleEmpresa);
-                result = new DaoGenerico().GetDados(sql, arquivo);
-                Generic.PreencherObjeto(lista, result, ano, mes);
-
-                #endregion
-
-                #region Ordem 34
+                #region Ordem 35
 
                 sql = Generic.MonteSql("513", 35, "F24", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
@@ -68,61 +60,48 @@ namespace ImportarExcel.Migracao
 
                 #endregion
 
-                #region Ordem 35
+                #region Ordem 36
 
-                sql = Generic.MonteSql("513", 35, "F31", planilha, titleEmpresa);
+                sql = Generic.MonteSql("514", 36, "F37", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
                 #endregion
 
-                #region Ordem 6
+                #region Ordem 38
 
-                sql = Generic.MonteSql("122", 6, "F42", planilha, titleEmpresa);
+                sql = Generic.MonteSql("516", 38, "F50", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
                 #endregion
 
-                #region Ordem 7
+                #region Ordem 39
 
-                sql = Generic.MonteSql("130", 7, "F73", planilha, titleEmpresa);
+                sql = Generic.MonteSql("517", 39, "F63", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
                 #endregion
 
-                #region Ordem 8
+                #region Ordem 41
 
-                sql = Generic.MonteSql("131", 8, "F54", planilha, titleEmpresa);
+                sql = Generic.MonteSql("519", 41, "F76", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
                 #endregion
 
-                #region Ordem 9
+                #region Ordem 42
 
-                sql = Generic.MonteSql("132", 9, "F60", planilha, titleEmpresa);
+                sql = Generic.MonteSql("520", 42, "F88", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
                 #endregion
-
-                #region Ordem 10
-
-                sql = Generic.MonteSql("133", 10, "F66", planilha, titleEmpresa);
-                result = new DaoGenerico().GetDados(sql, arquivo);
-                Generic.PreencherObjeto(lista, result, ano, mes);
-
-                #endregion
-
 
                 
-                foreach (var item in lista)
-                {
-                    
-                }
-
+            
                 return lista;
 
             }

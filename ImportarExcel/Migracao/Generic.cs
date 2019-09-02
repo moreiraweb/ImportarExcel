@@ -11,29 +11,40 @@ namespace ImportarExcel.Migracao
 {
     public static class Generic
     {
-        public static string MonteSql(string classificacao, int ordem, string campoExcel, string planilha, string titleEmpresa)
+        public static string MonteSql(string classificacao,
+                                      int ordem,
+                                      string campoExcel,
+                                      string planilha,
+                                      string titleEmpresa,
+                                      string CamposSoma = "")
         {
+            string camposParaSoma = ", '' as SOMA";
 
+            //verifica se a planilha possui espaços
             if (planilha.IndexOf("'") == -1)
                 planilha = planilha + "$";
             else
-                planilha = "'" + planilha.Replace("'","") + "$'";
+                planilha = "'" + planilha.Replace("'", "") + "$'";
+
 
             string sql = "SELECT " + classificacao + " as CODDISCRI, " +
                                 titleEmpresa + " AS EMPRESA, " +
                                 ordem + " as Ordem, " +
-                                campoExcel + " as QTD " +
-                               "FROM[" + planilha + "] where " + campoExcel + "<>''";
+                                campoExcel + " as QTD " + ((CamposSoma != "") ? "," + CamposSoma : camposParaSoma) +
+                               " FROM[" + planilha + "] where " + campoExcel + "<>''";
 
             return sql;
+
+
         }
 
 
-        public static List<CamposBanco> PreencherObjeto(List<CamposBanco> listaCampo, DataTable result, int ano, int mes)
+        public static List<CamposBanco> PreencherObjeto(List<CamposBanco> listaCampo, DataTable result, int ano, int mes, bool fazSoma = false, int qtdCampoSoma = 0, bool fazDivisao = false)
         {
 
             try
             {
+               
                 EmpresasRepository empresasRepository = new EmpresasRepository();
                 CamposBanco camposBanco;
                 foreach (var item in result.Rows)
@@ -53,7 +64,40 @@ namespace ImportarExcel.Migracao
                             camposBanco.ORDEM = int.Parse(((DataRow)item).ItemArray[2].ToString());
                             camposBanco.ANO = ano;
                             camposBanco.CDMES = mes;
-                            camposBanco.QTD = double.Parse(((DataRow)item).ItemArray[3].ToString());
+
+                            if (fazSoma)
+                            {
+                                camposBanco.QTD = 0;
+                                for (int i = 1; i <= qtdCampoSoma; i++)
+                                {
+                                    int indexArray = i + 3;
+                                    if (double.TryParse(((DataRow)item).ItemArray[indexArray].ToString(), out var v0))
+                                    {
+                                        camposBanco.QTD += v0;
+                                    }
+                                   
+                                }
+
+                                if (fazDivisao)
+                                {
+                                    //index 3 = F3
+                                    if (double.TryParse(((DataRow)item).ItemArray[3].ToString(), out var v1))
+                                    {
+                                        if (camposBanco.QTD > 0)
+                                            camposBanco.QTD = (v1 * 1000000) / camposBanco.QTD;
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                if (double.TryParse(((DataRow)item).ItemArray[3].ToString(), out var v1))
+                                    camposBanco.QTD = v1;
+                                else
+                                    camposBanco.QTD = 0;
+                            }
+
+                            
                             listaCampo.Add(camposBanco);
                         }
 
@@ -79,10 +123,10 @@ namespace ImportarExcel.Migracao
 
             dBConnectMysql.Insert(lista);
 
-           
+
         }
 
-      
-        
+
+
     }
 }
