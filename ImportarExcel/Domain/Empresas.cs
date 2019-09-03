@@ -10,7 +10,9 @@ namespace ImportarExcel.Domain
     public class Empresas
     {
         [Key]
+        public int Id { get; internal set; }
         public int Codigo { get; set; }
         public string Nome { get; set; }
+        
     }
 }

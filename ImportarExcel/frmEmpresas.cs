@@ -54,8 +54,9 @@ namespace ImportarExcel
         {
 
             dgDados.Rows.Add(
+                    entity.Id,
                     entity.Codigo,
-                    entity.Nome);
+                    entity.Nome.ToUpper());
         }
 
         private IEnumerable<Empresas> ListaFiltrada()
@@ -63,7 +64,9 @@ namespace ImportarExcel
             var repo = new EmpresasRepository();
 
 
-            return repo.Get().ToArray();
+            return repo.Get()
+                .OrderBy(x=>x.Codigo)
+                .ToArray();
         }
 
 
@@ -75,7 +78,7 @@ namespace ImportarExcel
 
         public Empresas PreencherObjeto(Empresas Empresas)
         {
-
+            Empresas.Codigo = int.Parse(txtCodigo.Text);
             Empresas.Nome = txtNome.Text;
 
             return Empresas;
@@ -118,12 +121,13 @@ namespace ImportarExcel
             try
             {
 
-                var id = Convert.ToInt32(dgDados.Rows[e.RowIndex].Cells["colCodigo"].Value);
+                var id = Convert.ToInt32(dgDados.Rows[e.RowIndex].Cells["colId"].Value);
 
                 var rep = new EmpresasRepository();
                 empresa = rep.Get(id);
 
-                lblId.Text = id.ToString();
+                lblId.Text = empresa.Id.ToString();
+                txtCodigo.Text = empresa.Codigo.ToString();
                 txtNome.Text = empresa.Nome;
 
             }
@@ -169,7 +173,8 @@ namespace ImportarExcel
         {
             empresa = null;
             txtNome.Text = string.Empty;
-            lblId.Text = string.Empty;
+            txtCodigo.Text = string.Empty;
+            lblId.Text = "0";
             LoadGrid();
         }
     }

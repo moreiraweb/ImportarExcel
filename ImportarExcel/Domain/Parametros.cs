@@ -15,5 +15,6 @@ namespace ImportarExcel.Domain
         public string DataBase { get; set; }
         public string Usuario { get; set; }
         public string Senha { get; set; }
+        public string NomeTabela { get; set; }
     }
 }

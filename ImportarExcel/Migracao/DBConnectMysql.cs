@@ -17,14 +17,16 @@ namespace ImportarExcel.Migracao
         private string database;
         private string uid;
         private string password;
+        private string nomeTabela;
 
-        public DBConnectMysql(string server, string database, string uid, string password)
+        public DBConnectMysql(string server, string database, string uid, string password, string nomeTabela)
         {
          
             this.server = server;
             this.database = database;
             this.uid = uid;
             this.password = password;
+            this.nomeTabela = nomeTabela;
 
             Initialize();
         }
@@ -75,7 +77,7 @@ namespace ImportarExcel.Migracao
 
         public void Insert(List<CamposBanco> lista)
         {
-            string query = "INSERT INTO table (CODDISCRI, CODEMPRESA, ORDEM, ANO, CDMES, QTD) VALUES ";
+            string query = "INSERT INTO "+ nomeTabela + " (CODDISCRI, CODEMPRESA, ORDEM, ANO, CDMES, QTD) VALUES ";
 
             var totalItens = lista.Count();
             int i = 1;
@@ -104,15 +106,12 @@ namespace ImportarExcel.Migracao
         }
 
      
-        public List<string>[] Select()
+        public List<CamposBanco> Select()
         {
-            string query = "SELECT * FROM table";
+            string query = "SELECT * FROM " + nomeTabela;
 
-            //Create a list to store the result
-            List<string>[] list = new List<string>[3];
-            list[0] = new List<string>();
-            list[1] = new List<string>();
-            list[2] = new List<string>();
+            CamposBanco camposBanco = null;
+            List<CamposBanco> list = new List<CamposBanco>();
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -125,9 +124,14 @@ namespace ImportarExcel.Migracao
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader["id"] + "");
-                    list[1].Add(dataReader["name"] + "");
-                    list[2].Add(dataReader["age"] + "");
+                    camposBanco = new CamposBanco();
+                    if (dataReader["CODDISCRI"] != DBNull.Value) camposBanco.CODDISCRI = Convert.ToInt32(dataReader["CODDISCRI"]);
+                    if (dataReader["CODEMPRESA"] != DBNull.Value) camposBanco.CODEMPRESA = Convert.ToInt32(dataReader["CODEMPRESA"]);
+                    if (dataReader["ORDEM"] != DBNull.Value) camposBanco.ORDEM = Convert.ToInt32(dataReader["ORDEM"]);
+                    if (dataReader["ANO"] != DBNull.Value) camposBanco.ANO = Convert.ToInt32(dataReader["ANO"]);
+                    if (dataReader["CDMES"] != DBNull.Value) camposBanco.CDMES = Convert.ToInt32(dataReader["CDMES"]);
+                    if (dataReader["QTD"] != DBNull.Value) camposBanco.QTD = Convert.ToInt32(dataReader["QTD"]);
+
                 }
 
                 //close Data Reader

@@ -14,9 +14,15 @@ namespace ImportarExcel
     [STAThread]
     static void Main()
     {
-      Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new frmPrincipal());
-    }
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new frmPrincipal());
+
+            using (frmLogin login = new frmLogin())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                    Application.Run(new frmPrincipal());
+            }
+        }
   }
 }

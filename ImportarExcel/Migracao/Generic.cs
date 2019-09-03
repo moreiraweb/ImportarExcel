@@ -119,7 +119,7 @@ namespace ImportarExcel.Migracao
             var parametros = parametrosRepository.Get().FirstOrDefault();
 
 
-            DBConnectMysql dBConnectMysql = new DBConnectMysql(parametros.Server, parametros.DataBase, parametros.Usuario, parametros.Senha);
+            DBConnectMysql dBConnectMysql = new DBConnectMysql(parametros.Server, parametros.DataBase, parametros.Usuario, parametros.Senha, parametros.NomeTabela);
 
             dBConnectMysql.Insert(lista);
 

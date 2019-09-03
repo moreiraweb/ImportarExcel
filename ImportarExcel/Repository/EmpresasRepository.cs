@@ -26,16 +26,17 @@ namespace ImportarExcel.Repository
 
         public void Alterar(Empresas Empresas)
         {
-            var emp = context.Empresas.Where(x => x.Codigo == Empresas.Codigo).FirstOrDefault();
+            var emp = context.Empresas.Where(x => x.Id == Empresas.Id).FirstOrDefault();
 
+            emp.Codigo = Empresas.Codigo;
             emp.Nome = Empresas.Nome;
 
             context.SaveChanges();
         }
 
-        public Empresas Get(int codigo)
+        public Empresas Get(int Id)
         {
-            return context.Empresas.FirstOrDefault(x => x.Codigo == codigo);
+            return context.Empresas.FirstOrDefault(x => x.Id == Id);
         }
 
         public IList<Empresas> Get()
@@ -53,7 +54,7 @@ namespace ImportarExcel.Repository
 
         public void Remover(Empresas Empresas)
         {
-            var emp = context.Empresas.FirstOrDefault(x => x.Codigo == Empresas.Codigo);
+            var emp = context.Empresas.FirstOrDefault(x => x.Id == Empresas.Id);
             context.Empresas.Remove(emp);
             context.SaveChanges();
         }

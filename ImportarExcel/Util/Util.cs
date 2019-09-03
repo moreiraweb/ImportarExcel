@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImportarExcel.Domain;
+using ImportarExcel.Repository;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -36,6 +38,12 @@ namespace ImportarExcel.Util
                 }
             }
             return obj;
+        }
+
+        public static void GravarLog(string nomeArquivo, string planilha, string status, string msgErro)
+        {
+            var log = new Logs() { DataHoraEnvio = DateTime.Now, Usuario = Helper.usuarios.Usuario, NomeDocumento = planilha, Status = status, MsgErro = msgErro };
+            new LogsRepository().Adicionar(log);
         }
     }
 }

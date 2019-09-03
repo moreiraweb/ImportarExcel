@@ -1,4 +1,6 @@
-﻿using ImportarExcel.Repository;
+﻿using ImportarExcel.Domain;
+using ImportarExcel.Repository;
+using ImportarExcel.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +20,7 @@ namespace ImportarExcel
         {
             InitializeComponent();
 
-           
+            toolStripStatusuSUARIO.Text = Helper.usuarios.Usuario.ToUpper();
 
         }
 
@@ -109,6 +111,13 @@ namespace ImportarExcel
         private void logsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmLogs frm = new frmLogs();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void fazerQueryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmQuery frm = new frmQuery();
             frm.MdiParent = this;
             frm.Show();
         }

@@ -70,3 +70,5 @@ C:\Testes\ImportarExcel\ImportarExcel\bin\Debug\Google.Protobuf.xml
 C:\Testes\ImportarExcel\ImportarExcel\bin\Debug\MySql.Data.xml
 C:\Testes\ImportarExcel\ImportarExcel\bin\Debug\Renci.SshNet.xml
 C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmLogs.resources
+C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmLogin.resources
+C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmQuery.resources

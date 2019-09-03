@@ -31,6 +31,7 @@ namespace ImportarExcel.Repository
             par.DataBase = Parametros.DataBase;
             par.Usuario = Parametros.Usuario;
             par.Senha = Parametros.Senha;
+            par.NomeTabela = Parametros.NomeTabela;
             context.SaveChanges();
         }
 

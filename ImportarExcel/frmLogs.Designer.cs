@@ -57,7 +57,7 @@
             this.dgDados.Location = new System.Drawing.Point(12, 39);
             this.dgDados.Name = "dgDados";
             this.dgDados.ReadOnly = true;
-            this.dgDados.Size = new System.Drawing.Size(967, 433);
+            this.dgDados.Size = new System.Drawing.Size(1202, 447);
             this.dgDados.TabIndex = 6;
             // 
             // colCodigo
@@ -109,7 +109,7 @@
             // 
             // txtDocumento
             // 
-            this.txtDocumento.Location = new System.Drawing.Point(85, 12);
+            this.txtDocumento.Location = new System.Drawing.Point(126, 12);
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(295, 20);
             this.txtDocumento.TabIndex = 9;
@@ -119,13 +119,13 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(14, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.Size = new System.Drawing.Size(107, 13);
             this.label3.TabIndex = 12;
-            this.label3.Text = "Documento:";
+            this.label3.Text = "Documento/Planilha:";
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(467, 9);
+            this.btnCancelar.Location = new System.Drawing.Point(508, 9);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
@@ -135,7 +135,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(386, 9);
+            this.btnBuscar.Location = new System.Drawing.Point(427, 9);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 10;
@@ -147,7 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 498);
+            this.ClientSize = new System.Drawing.Size(1223, 498);
             this.Controls.Add(this.txtDocumento);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancelar);

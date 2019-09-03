@@ -58,7 +58,8 @@ namespace ImportarExcel
                     entity.Id,
                     entity.Server,
                     entity.DataBase,
-                    entity.Usuario);
+                    entity.Usuario,
+                    entity.NomeTabela);
         }
 
         private IEnumerable<Parametros> ListaFiltrada()
@@ -83,6 +84,7 @@ namespace ImportarExcel
             parametros.DataBase = txtDataBase.Text;
             parametros.Usuario = txtUsuario.Text;
             parametros.Senha = txtSenha.Text;
+            parametros.NomeTabela = txtTabela.Text;
 
             return parametros;
 
@@ -134,6 +136,7 @@ namespace ImportarExcel
                 txtDataBase.Text = parametro.DataBase;
                 txtUsuario.Text = parametro.Usuario;
                 txtSenha.Text = parametro.Senha;
+                txtTabela.Text = parametro.NomeTabela;
             }
             catch (Exception ex)
             {
