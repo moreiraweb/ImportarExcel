@@ -1,6 +1,7 @@
 ﻿using ImportarExcel.Domain;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SQLite;
@@ -12,12 +13,11 @@ namespace ImportarExcel
 {
     public class DatabaseContext : DbContext
     {
-        
+
         public DatabaseContext() :
             base(new SQLiteConnection()
             {
-                ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Desenvolvimento\\Moreiraweb\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
-                //ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Testes\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
+                ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = ConfigurationManager.AppSettings["cnSqlLite"].ToString(), ForeignKeys = true }.ConnectionString
             }, true)
         {
         }
