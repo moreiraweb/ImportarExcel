@@ -125,8 +125,8 @@ namespace ImportarExcel.Migracao
                 while (dataReader.Read())
                 {
                     camposBanco = new CamposBanco();
-                    if (dataReader["CODDISCRI"] != DBNull.Value) camposBanco.CODDISCRI = Convert.ToInt32(dataReader["CODDISCRI"]);
-                    if (dataReader["CODEMPRESA"] != DBNull.Value) camposBanco.CODEMPRESA = Convert.ToInt32(dataReader["CODEMPRESA"]);
+                    if (dataReader["CDDISCRI"] != DBNull.Value) camposBanco.CODDISCRI = Convert.ToInt32(dataReader["CDDISCRI"]);
+                    if (dataReader["CDEMPRESA"] != DBNull.Value) camposBanco.CODEMPRESA = Convert.ToInt32(dataReader["CDEMPRESA"]);
                     if (dataReader["ORDEM"] != DBNull.Value) camposBanco.ORDEM = Convert.ToInt32(dataReader["ORDEM"]);
                     if (dataReader["ANO"] != DBNull.Value) camposBanco.ANO = Convert.ToInt32(dataReader["ANO"]);
                     if (dataReader["CDMES"] != DBNull.Value) camposBanco.CDMES = Convert.ToInt32(dataReader["CDMES"]);
