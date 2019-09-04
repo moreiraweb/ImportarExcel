@@ -39,7 +39,7 @@ namespace ImportarExcel.Migracao
 
                 #region Ordem 1
 
-                sql = Generic.MonteSql("110", 1, "F24", planilha, titleEmpresa);
+                sql = Generic.MonteSql("110", 1, "F18", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
@@ -63,7 +63,7 @@ namespace ImportarExcel.Migracao
 
                 #region Ordem 4
 
-                sql = Generic.MonteSql("120", 4, "F48", planilha, titleEmpresa);
+                sql = Generic.MonteSql("120", 4, "F36", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
@@ -71,7 +71,7 @@ namespace ImportarExcel.Migracao
 
                 #region Ordem 5
 
-                sql = Generic.MonteSql("121", 5, "F30", planilha, titleEmpresa);
+                sql = Generic.MonteSql("121", 5, "F24", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
@@ -79,7 +79,7 @@ namespace ImportarExcel.Migracao
 
                 #region Ordem 6
 
-                sql = Generic.MonteSql("122", 6, "F42", planilha, titleEmpresa);
+                sql = Generic.MonteSql("122", 6, "F36", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
@@ -87,7 +87,7 @@ namespace ImportarExcel.Migracao
 
                 #region Ordem 7
 
-                sql = Generic.MonteSql("130", 7, "F73", planilha, titleEmpresa);
+                sql = Generic.MonteSql("130", 7, "F60", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
@@ -95,7 +95,7 @@ namespace ImportarExcel.Migracao
 
                 #region Ordem 8
 
-                sql = Generic.MonteSql("131", 8, "F54", planilha, titleEmpresa);
+                sql = Generic.MonteSql("131", 8, "F42", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
@@ -103,7 +103,7 @@ namespace ImportarExcel.Migracao
 
                 #region Ordem 9
 
-                sql = Generic.MonteSql("132", 9, "F60", planilha, titleEmpresa);
+                sql = Generic.MonteSql("132", 9, "F48", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
@@ -111,14 +111,61 @@ namespace ImportarExcel.Migracao
 
                 #region Ordem 10
 
-                sql = Generic.MonteSql("133", 10, "F66", planilha, titleEmpresa);
+                sql = Generic.MonteSql("133", 10, "F54", planilha, titleEmpresa);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                Generic.PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 24
+
+                sql = Generic.MonteSql("410", 24, "F66", planilha, titleEmpresa);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                Generic.PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 25
+
+                sql = Generic.MonteSql("411", 25, "F73", planilha, titleEmpresa);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                Generic.PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 26
+
+                sql = Generic.MonteSql("412", 26, "F80", planilha, titleEmpresa);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                Generic.PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 27
+
+                sql = Generic.MonteSql("413", 27, "F87", planilha, titleEmpresa);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                Generic.PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 28
+
+                sql = Generic.MonteSql("414", 28, "F93", planilha, titleEmpresa);
+                result = new DaoGenerico().GetDados(sql, arquivo);
+                Generic.PreencherObjeto(lista, result, ano, mes);
+
+                #endregion
+
+                #region Ordem 29
+
+                sql = Generic.MonteSql("415", 29, "F99", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
                 #endregion
 
 
-                
                 return lista;
 
             }
