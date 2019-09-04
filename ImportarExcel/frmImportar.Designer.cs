@@ -30,15 +30,10 @@
     {
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.btnSelecionarArquivo = new System.Windows.Forms.Button();
-            this.txtAno = new System.Windows.Forms.TextBox();
-            this.txtMes = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnMigrar = new System.Windows.Forms.Button();
             this.pgbMigracao = new System.Windows.Forms.ProgressBar();
             this.fbd = new System.Windows.Forms.FolderBrowserDialog();
             this.btnSelecionarPasta = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtImportar = new System.Windows.Forms.Label();
             this.lblQtdArquivo = new System.Windows.Forms.Label();
             this.lblAguarde = new System.Windows.Forms.Label();
@@ -50,47 +45,13 @@
             // 
             // btnSelecionarArquivo
             // 
-            this.btnSelecionarArquivo.Location = new System.Drawing.Point(128, 50);
+            this.btnSelecionarArquivo.Location = new System.Drawing.Point(6, 31);
             this.btnSelecionarArquivo.Name = "btnSelecionarArquivo";
             this.btnSelecionarArquivo.Size = new System.Drawing.Size(133, 23);
             this.btnSelecionarArquivo.TabIndex = 4;
             this.btnSelecionarArquivo.Text = "Selecionar Arquivo";
             this.btnSelecionarArquivo.UseVisualStyleBackColor = true;
             this.btnSelecionarArquivo.Click += new System.EventHandler(this.btnSelecionarArquivo_Click);
-            // 
-            // txtAno
-            // 
-            this.txtAno.Location = new System.Drawing.Point(12, 53);
-            this.txtAno.Name = "txtAno";
-            this.txtAno.Size = new System.Drawing.Size(50, 20);
-            this.txtAno.TabIndex = 1;
-            this.txtAno.Text = "2018";
-            // 
-            // txtMes
-            // 
-            this.txtMes.Location = new System.Drawing.Point(79, 53);
-            this.txtMes.Name = "txtMes";
-            this.txtMes.Size = new System.Drawing.Size(30, 20);
-            this.txtMes.TabIndex = 2;
-            this.txtMes.Text = "1";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "ANO:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(76, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "MÊS:";
             // 
             // btnMigrar
             // 
@@ -114,23 +75,13 @@
             // 
             // btnSelecionarPasta
             // 
-            this.btnSelecionarPasta.Location = new System.Drawing.Point(298, 50);
+            this.btnSelecionarPasta.Location = new System.Drawing.Point(6, 60);
             this.btnSelecionarPasta.Name = "btnSelecionarPasta";
             this.btnSelecionarPasta.Size = new System.Drawing.Size(133, 23);
             this.btnSelecionarPasta.TabIndex = 15;
             this.btnSelecionarPasta.Text = "Selecionar Pasta";
             this.btnSelecionarPasta.UseVisualStyleBackColor = true;
             this.btnSelecionarPasta.Click += new System.EventHandler(this.btnSelecionarPasta_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(267, 56);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "OU";
             // 
             // txtImportar
             // 
@@ -174,14 +125,9 @@
             this.Controls.Add(this.lblAguarde);
             this.Controls.Add(this.lblQtdArquivo);
             this.Controls.Add(this.txtImportar);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnSelecionarPasta);
             this.Controls.Add(this.pgbMigracao);
             this.Controls.Add(this.btnMigrar);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtMes);
-            this.Controls.Add(this.txtAno);
             this.Controls.Add(this.btnSelecionarArquivo);
             this.MaximizeBox = false;
             this.Name = "frmImportar";
@@ -196,15 +142,10 @@
 
     private System.Windows.Forms.OpenFileDialog ofd;
     private System.Windows.Forms.Button btnSelecionarArquivo;
-        private System.Windows.Forms.TextBox txtAno;
-        private System.Windows.Forms.TextBox txtMes;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnMigrar;
         private System.Windows.Forms.ProgressBar pgbMigracao;
         private System.Windows.Forms.FolderBrowserDialog fbd;
         private System.Windows.Forms.Button btnSelecionarPasta;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label txtImportar;
         private System.Windows.Forms.Label lblQtdArquivo;
         private System.Windows.Forms.Label lblAguarde;

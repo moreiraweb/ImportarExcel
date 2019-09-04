@@ -26,19 +26,23 @@ namespace ImportarExcel.Migracao
                                  "20 AS ORDEM20, F55, " +
                                  "21 AS ORDEM21, F64, " +
                                  "22 AS ORDEM22, F73, " +
-                                 "22_2 AS ORDEM22_2, F80, " +
                                  "23 AS ORDEM23, F89 " +
                          " FROM [Gestão$] WHERE F6<>''";
             //sql = "select * FROM [Gestão$] WHERE F6<>''";
             return sql;
         }
-        public static List<CamposBanco> LerPlanilha(string arquivo, int ano, int mes)
+        public static List<CamposBanco> LerPlanilha(string arquivo)
         {
             string planilha = "Gestão";
             string titleEmpresa = "[INDICADORES MENSAIS DE GESTÃO DE PESSOAL]";
             string sql = string.Empty;
             DataTable result = null;
             List<CamposBanco> lista = new List<CamposBanco>();
+
+            var AnoMes = Generic.GetMesAno(arquivo);
+            int ano = int.Parse(AnoMes[0]);
+            string mes = AnoMes[1];
+
             try
             {
 
@@ -106,9 +110,9 @@ namespace ImportarExcel.Migracao
 
                 #endregion
 
-                #region Ordem 21
+                #region Ordem 19
 
-                sql = Generic.MonteSql("329", 21, "F64", planilha, titleEmpresa);
+                sql = Generic.MonteSql("329", 19, "F64", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 
@@ -117,14 +121,6 @@ namespace ImportarExcel.Migracao
                 #region Ordem 22
 
                 sql = Generic.MonteSql("330", 22, "F73", planilha, titleEmpresa);
-                result = new DaoGenerico().GetDados(sql, arquivo);
-                Generic.PreencherObjeto(lista, result, ano, mes);
-
-                #endregion
-
-                #region Ordem 22_2
-
-                sql = Generic.MonteSql("330", 22, "F80", planilha, titleEmpresa);
                 result = new DaoGenerico().GetDados(sql, arquivo);
                 Generic.PreencherObjeto(lista, result, ano, mes);
 

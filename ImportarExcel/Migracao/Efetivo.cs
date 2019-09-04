@@ -27,13 +27,18 @@ namespace ImportarExcel.Migracao
             //string sql = "select * from [Efetivo$] where F6<>''";
             return sql;
         }
-        public static List<CamposBanco> LerPlanilha(string arquivo, int ano, int mes)
+        public static List<CamposBanco> LerPlanilha(string arquivo)
         {
             string planilha = "Efetivo";
             string titleEmpresa = "[EFETIVO DE PESSOAL - MENSAL]";
             string sql = string.Empty;
             DataTable result = null;
             List<CamposBanco> lista = new List<CamposBanco>();
+
+            var AnoMes = Generic.GetMesAno(arquivo);
+            int ano =int.Parse(AnoMes[0]);
+            string mes = AnoMes[1];
+
             try
             {
 

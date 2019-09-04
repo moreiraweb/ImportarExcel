@@ -39,12 +39,12 @@ namespace ImportarExcel.Migracao
         }
 
 
-        public static List<CamposBanco> PreencherObjeto(List<CamposBanco> listaCampo, DataTable result, int ano, int mes, bool fazSoma = false, int qtdCampoSoma = 0, bool fazDivisao = false)
+        public static List<CamposBanco> PreencherObjeto(List<CamposBanco> listaCampo, DataTable result, int ano, string mes, bool fazSoma = false, int qtdCampoSoma = 0, bool fazDivisao = false)
         {
 
             try
             {
-               
+                
                 EmpresasRepository empresasRepository = new EmpresasRepository();
                 CamposBanco camposBanco;
                 foreach (var item in result.Rows)
@@ -112,6 +112,35 @@ namespace ImportarExcel.Migracao
         }
 
 
+        public static string[] GetMesAno(string arquivo)
+        {
+            string[] AnoMes = new string[2];
+
+            string sql = "select f4 from[Empresa$] where f4<>''";
+
+            var result = new DaoGenerico().GetDados(sql, arquivo);
+
+            int i = 1;
+            foreach (var item in result.Rows)
+            {
+                if (i == 1)
+                    AnoMes[0] = ((DataRow)item).ItemArray[0].ToString();
+                else if (i == 2)
+                {
+
+                    Mes mes = (Mes)System.Enum.Parse(typeof(Mes), ((DataRow)item).ItemArray[0].ToString().Trim().ToUpper());
+
+                    AnoMes[1] = Convert.ToInt32(mes).ToString().PadLeft(2, '0');
+                }
+                else
+                    break;
+
+                i++;
+            }
+
+            return AnoMes;
+        }
+
 
         public static void MigrarDados(List<CamposBanco> lista)
         {
@@ -125,7 +154,6 @@ namespace ImportarExcel.Migracao
 
 
         }
-
 
 
     }

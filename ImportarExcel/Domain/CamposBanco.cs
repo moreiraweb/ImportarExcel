@@ -12,7 +12,8 @@ namespace ImportarExcel.Domain
         public int CODEMPRESA { get; set; }
         public int ORDEM { get; set; }
         public int ANO { get; set; }
-        public int CDMES { get; set; }
+        public string CDMES { get; set; }
         public Double QTD { get; set; }
+
     }
 }

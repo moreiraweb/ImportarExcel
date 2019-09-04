@@ -25,13 +25,17 @@ namespace ImportarExcel.Migracao
             
             return sql;
         }
-        public static List<CamposBanco> LerPlanilha(string arquivo, int ano, int mes)
+        public static List<CamposBanco> LerPlanilha(string arquivo)
         {
             string planilha = "'Absenteísmo até 15 dias'";
             string titleEmpresa = "[INDICADORES MENSAIS DE ABSENTEÍSMO - MEDICINA DO TRABALHO_ATÉ 15]";
             string sql = string.Empty;
             DataTable result = null;
             List<CamposBanco> lista = new List<CamposBanco>();
+
+            var AnoMes = Generic.GetMesAno(arquivo);
+            int ano = int.Parse(AnoMes[0]);
+            string mes = AnoMes[1];
 
             try
             {

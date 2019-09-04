@@ -34,7 +34,7 @@ namespace ImportarExcel
 
         private void btnSelecionarArquivo_Click(object sender, EventArgs e)
         {
-
+            lblQtdArquivo.Text = "";
             txtImportar.Text = "";
             //define as propriedades do controle 
             //OpenFileDialog
@@ -157,31 +157,31 @@ namespace ImportarExcel
                         var mes = int.Parse(filesnames.Name.Substring(0, 2));
                         var ano = int.Parse(filesnames.Name.Substring(2, 4));
 
-                        listaMigracao.AddRange(Efetivo.LerPlanilha(filesnames.FullName, ano, mes));
+                        listaMigracao.AddRange(Efetivo.LerPlanilha(filesnames.FullName));
                         nomePlanilha = "Efetivo";
                         Util.Util.GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha " + nomePlanilha + " OK", "");
 
-                        listaMigracao.AddRange(Gestao.LerPlanilha(filesnames.FullName, ano, mes));
+                        listaMigracao.AddRange(Gestao.LerPlanilha(filesnames.FullName));
                         nomePlanilha = "Gestao";
                         Util.Util.GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha " + nomePlanilha + " OK", "");
 
-                        listaMigracao.AddRange(AbsenteismoAteQuinzeDias.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                        listaMigracao.AddRange(AbsenteismoAteQuinzeDias.LerPlanilha(filesnames.FullName));
                         nomePlanilha = "AbsenteismoQuinzeDias";
                         Util.Util.GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha " + nomePlanilha + " OK", "");
 
-                        listaMigracao.AddRange(AbsenteismoMaisQuinzeDiasAteSeisMeses.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                        listaMigracao.AddRange(AbsenteismoMaisQuinzeDiasAteSeisMeses.LerPlanilha(filesnames.FullName));
                         nomePlanilha = "AbsenteismoMaisQuinzeDiasAteSeisMeses";
                         Util.Util.GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha " + nomePlanilha + " OK", "");
 
-                        listaMigracao.AddRange(AbsenteismoMaisSeisMeses.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                        listaMigracao.AddRange(AbsenteismoMaisSeisMeses.LerPlanilha(filesnames.FullName));
                         nomePlanilha = "AbsenteismoMaisSeisMeses";
                         Util.Util.GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha " + nomePlanilha + " OK", "");
 
-                        listaMigracao.AddRange(AcidenteProprio.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                        listaMigracao.AddRange(AcidenteProprio.LerPlanilha(filesnames.FullName));
                         nomePlanilha = "AcidenteProprio";
                         Util.Util.GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha " + nomePlanilha + " OK", "");
 
-                        listaMigracao.AddRange(AcidenteTerceiro.LerPlanilha(filesnames.FullName, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                        listaMigracao.AddRange(AcidenteTerceiro.LerPlanilha(filesnames.FullName));
                         nomePlanilha = "AcidenteTerceiro";
                         Util.Util.GravarLog(filesnames.Name, nomePlanilha, "Leitura Planilha " + nomePlanilha + " OK", "");
 
@@ -222,7 +222,7 @@ namespace ImportarExcel
                 ///
                 /// PLANILHA EFETIVO
                 ///
-                listaMigracao.AddRange(Efetivo.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(Efetivo.LerPlanilha(txtImportar.Text));
 
                 nomePlanilha = "Efetivo";
                 Util.Util.GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
@@ -232,7 +232,7 @@ namespace ImportarExcel
                 ///
                 /// PLANILHA GESTÃO
                 ///
-                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(Gestao.LerPlanilha(txtImportar.Text));
 
                 nomePlanilha = "Gestao";
                 Util.Util.GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha Efetivo OK", "");
@@ -242,7 +242,7 @@ namespace ImportarExcel
                 ///
                 /// PLANILHA Absenteismo até Quinze Dias
                 ///
-                listaMigracao.AddRange(AbsenteismoAteQuinzeDias.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(AbsenteismoAteQuinzeDias.LerPlanilha(txtImportar.Text));
 
                 nomePlanilha = "AbsenteismoQuinzeDias";
                 Util.Util.GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AbsenteismoAteQuinzeDias OK", "");
@@ -252,7 +252,7 @@ namespace ImportarExcel
                 /////
                 ///// PLANILHA Absenteismo Mais Quinze Dias Ate Seis Meses
                 /////
-                listaMigracao.AddRange(AbsenteismoMaisQuinzeDiasAteSeisMeses.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(AbsenteismoMaisQuinzeDiasAteSeisMeses.LerPlanilha(txtImportar.Text));
 
                 nomePlanilha = "AbsenteismoAteQuinzeDias";
                 Util.Util.GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AbsenteismoMaisQuinzeDiasAteSeisMeses OK", "");
@@ -262,7 +262,7 @@ namespace ImportarExcel
                 /////
                 ///// PLANILHA AbsenteismoMaisSeisMeses
                 /////
-                listaMigracao.AddRange(AbsenteismoMaisSeisMeses.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(AbsenteismoMaisSeisMeses.LerPlanilha(txtImportar.Text));
 
                 nomePlanilha = "AbsenteismoMaisSeisMeses";
                 Util.Util.GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AbsenteismoMaisSeisMeses OK", "");
@@ -273,7 +273,7 @@ namespace ImportarExcel
                 /////
                 ///// PLANILHA AcidenteProprio
                 /////
-                listaMigracao.AddRange(AcidenteProprio.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(AcidenteProprio.LerPlanilha(txtImportar.Text));
 
                 nomePlanilha = "AcidenteProprio";
                 Util.Util.GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AcidenteProprio OK", "");
@@ -284,7 +284,7 @@ namespace ImportarExcel
                 /////
                 ///// PLANILHA 777
                 /////
-                listaMigracao.AddRange(AcidenteTerceiro.LerPlanilha(txtImportar.Text, int.Parse(txtAno.Text), int.Parse(txtMes.Text)));
+                listaMigracao.AddRange(AcidenteTerceiro.LerPlanilha(txtImportar.Text));
 
                 nomePlanilha = "AcidenteTerceiro";
                 Util.Util.GravarLog(txtImportar.Text, nomePlanilha, "Leitura Planilha AcidenteTerceiro OK", "");
@@ -317,6 +317,8 @@ namespace ImportarExcel
 
         private void btnSelecionarPasta_Click(object sender, EventArgs e)
         {
+            lblQtdArquivo.Text = "";
+            txtImportar.Text = "";
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
