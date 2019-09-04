@@ -372,12 +372,12 @@ namespace ImportarExcel
             if (v)
             {
                 btnMigrar.Enabled = false;
-                lblAguarde.Text = "AGUARDE...";
+                lblAguarde.Visible = true;
             }
             else
             {
                 btnMigrar.Enabled = true;
-                lblAguarde.Text = "";
+                lblAguarde.Visible = false;
             }
             
         }

@@ -161,8 +161,10 @@
             this.lblAguarde.ForeColor = System.Drawing.Color.DodgerBlue;
             this.lblAguarde.Location = new System.Drawing.Point(624, 131);
             this.lblAguarde.Name = "lblAguarde";
-            this.lblAguarde.Size = new System.Drawing.Size(0, 25);
+            this.lblAguarde.Size = new System.Drawing.Size(140, 25);
             this.lblAguarde.TabIndex = 20;
+            this.lblAguarde.Text = "AGUARDE ...";
+            this.lblAguarde.Visible = false;
             // 
             // frmImportar
             // 
