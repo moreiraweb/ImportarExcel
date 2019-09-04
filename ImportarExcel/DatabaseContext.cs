@@ -16,8 +16,8 @@ namespace ImportarExcel
         public DatabaseContext() :
             base(new SQLiteConnection()
             {
-                //ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Desenvolvimento\\Moreiraweb\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
-                ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Testes\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
+                ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Desenvolvimento\\Moreiraweb\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
+                //ConnectionString = new SQLiteConnectionStringBuilder() { DataSource = "C:\\Testes\\ImportarExcel\\db\\db.db", ForeignKeys = true }.ConnectionString
             }, true)
         {
         }

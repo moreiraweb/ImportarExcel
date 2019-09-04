@@ -135,22 +135,22 @@
             // txtImportar
             // 
             this.txtImportar.AutoSize = true;
-            this.txtImportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtImportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtImportar.ForeColor = System.Drawing.Color.Red;
-            this.txtImportar.Location = new System.Drawing.Point(13, 86);
+            this.txtImportar.Location = new System.Drawing.Point(13, 102);
             this.txtImportar.Name = "txtImportar";
-            this.txtImportar.Size = new System.Drawing.Size(191, 25);
+            this.txtImportar.Size = new System.Drawing.Size(153, 20);
             this.txtImportar.TabIndex = 17;
             this.txtImportar.Text = "PASTA/ARQUIVO";
             // 
             // lblQtdArquivo
             // 
             this.lblQtdArquivo.AutoSize = true;
-            this.lblQtdArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQtdArquivo.ForeColor = System.Drawing.Color.Red;
-            this.lblQtdArquivo.Location = new System.Drawing.Point(41, 112);
+            this.lblQtdArquivo.Location = new System.Drawing.Point(41, 131);
             this.lblQtdArquivo.Name = "lblQtdArquivo";
-            this.lblQtdArquivo.Size = new System.Drawing.Size(163, 25);
+            this.lblQtdArquivo.Size = new System.Drawing.Size(132, 20);
             this.lblQtdArquivo.TabIndex = 18;
             this.lblQtdArquivo.Text = "QTD ARQUIVO";
             // 

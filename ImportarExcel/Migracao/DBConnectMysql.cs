@@ -77,7 +77,7 @@ namespace ImportarExcel.Migracao
 
         public void Insert(List<CamposBanco> lista)
         {
-            string query = "INSERT INTO "+ nomeTabela + " (CODDISCRI, CODEMPRESA, ORDEM, ANO, CDMES, QTD) VALUES ";
+            string query = "INSERT INTO "+ nomeTabela + " (CDDISCRI, CDEMPRESA, ORDEM, ANO, CDMES, QTD) VALUES ";
 
             var totalItens = lista.Count();
             int i = 1;

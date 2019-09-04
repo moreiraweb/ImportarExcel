@@ -72,3 +72,14 @@ C:\Testes\ImportarExcel\ImportarExcel\bin\Debug\Renci.SshNet.xml
 C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmLogs.resources
 C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmLogin.resources
 C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmQuery.resources
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\bin\Debug\BouncyCastle.Crypto.dll
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\bin\Debug\Google.Protobuf.dll
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\bin\Debug\MySql.Data.dll
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\bin\Debug\Renci.SshNet.dll
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\bin\Debug\Google.Protobuf.xml
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\bin\Debug\MySql.Data.xml
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\bin\Debug\Renci.SshNet.xml
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmLogin.resources
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmLogs.resources
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmEmpresas.resources
+C:\Desenvolvimento\Moreiraweb\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.frmQuery.resources
