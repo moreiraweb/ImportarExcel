@@ -33,6 +33,7 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.frmImportaroolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fazerQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +61,6 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusuSUARIO = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.fazerQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -100,26 +100,33 @@
             this.frmImportaroolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.frmImportaroolStripMenuItem.Name = "frmImportaroolStripMenuItem";
             this.frmImportaroolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.frmImportaroolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.frmImportaroolStripMenuItem.Text = "&Importar";
+            this.frmImportaroolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.frmImportaroolStripMenuItem.Text = "&Importar RH Mensal";
             this.frmImportaroolStripMenuItem.Click += new System.EventHandler(this.frmImportaroolStripMenuItem_Click);
+            // 
+            // fazerQueryToolStripMenuItem
+            // 
+            this.fazerQueryToolStripMenuItem.Name = "fazerQueryToolStripMenuItem";
+            this.fazerQueryToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.fazerQueryToolStripMenuItem.Text = "Fazer Query";
+            this.fazerQueryToolStripMenuItem.Click += new System.EventHandler(this.fazerQueryToolStripMenuItem_Click);
             // 
             // logsToolStripMenuItem
             // 
             this.logsToolStripMenuItem.Name = "logsToolStripMenuItem";
-            this.logsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.logsToolStripMenuItem.Text = "Logs";
             this.logsToolStripMenuItem.Click += new System.EventHandler(this.logsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(214, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -307,13 +314,6 @@
             this.toolStripStatusuSUARIO.Size = new System.Drawing.Size(143, 17);
             this.toolStripStatusuSUARIO.Text = "toolStripStatusuSUARIO";
             // 
-            // fazerQueryToolStripMenuItem
-            // 
-            this.fazerQueryToolStripMenuItem.Name = "fazerQueryToolStripMenuItem";
-            this.fazerQueryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fazerQueryToolStripMenuItem.Text = "Fazer Query";
-            this.fazerQueryToolStripMenuItem.Click += new System.EventHandler(this.fazerQueryToolStripMenuItem_Click);
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,6 +322,7 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
             this.Name = "frmPrincipal";

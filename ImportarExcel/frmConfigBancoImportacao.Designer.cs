@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfigBancoImportacao));
             this.label1 = new System.Windows.Forms.Label();
             this.txtServer = new System.Windows.Forms.TextBox();
             this.txtDataBase = new System.Windows.Forms.TextBox();
@@ -35,6 +36,11 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dgDados = new System.Windows.Forms.DataGridView();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colServer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStringConexao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -43,11 +49,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtTabela = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colServer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStringConexao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgDados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,6 +123,45 @@
             this.dgDados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDados_CellContentClick);
             this.dgDados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgDados_CellDoubleClick);
             // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "Id";
+            this.colId.HeaderText = "Id";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            this.colId.Width = 50;
+            // 
+            // colServer
+            // 
+            this.colServer.DataPropertyName = "Server";
+            this.colServer.HeaderText = "Server";
+            this.colServer.Name = "colServer";
+            this.colServer.ReadOnly = true;
+            // 
+            // colStringConexao
+            // 
+            this.colStringConexao.DataPropertyName = "DataBase";
+            this.colStringConexao.HeaderText = "Data Base";
+            this.colStringConexao.Name = "colStringConexao";
+            this.colStringConexao.ReadOnly = true;
+            this.colStringConexao.Width = 150;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Usuario";
+            this.Column1.HeaderText = "Usuário";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "NomeTabela";
+            this.Column2.HeaderText = "Tabela";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -192,45 +232,6 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Tabela:";
             // 
-            // colId
-            // 
-            this.colId.DataPropertyName = "Id";
-            this.colId.HeaderText = "Id";
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
-            this.colId.Width = 50;
-            // 
-            // colServer
-            // 
-            this.colServer.DataPropertyName = "Server";
-            this.colServer.HeaderText = "Server";
-            this.colServer.Name = "colServer";
-            this.colServer.ReadOnly = true;
-            // 
-            // colStringConexao
-            // 
-            this.colStringConexao.DataPropertyName = "DataBase";
-            this.colStringConexao.HeaderText = "Data Base";
-            this.colStringConexao.Name = "colStringConexao";
-            this.colStringConexao.ReadOnly = true;
-            this.colStringConexao.Width = 150;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Usuario";
-            this.Column1.HeaderText = "Usuário";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "NomeTabela";
-            this.Column2.HeaderText = "Tabela";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
             // frmConfigBancoImportacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,6 +252,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtServer);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmConfigBancoImportacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

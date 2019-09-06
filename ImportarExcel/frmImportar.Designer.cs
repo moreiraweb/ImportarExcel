@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImportar));
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.btnSelecionarArquivo = new System.Windows.Forms.Button();
             this.btnMigrar = new System.Windows.Forms.Button();
@@ -129,6 +130,7 @@
             this.Controls.Add(this.pgbMigracao);
             this.Controls.Add(this.btnMigrar);
             this.Controls.Add(this.btnSelecionarArquivo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmImportar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

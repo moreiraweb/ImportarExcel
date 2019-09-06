@@ -82,3 +82,4 @@ C:\Testes\ImportarExcel\ImportarExcel\bin\Debug\System.Data.SQLite.dll.config
 C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.csproj.CopyComplete
 C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.exe
 C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.pdb
+C:\Testes\ImportarExcel\ImportarExcel\obj\Debug\ImportarExcel.csprojAssemblyReference.cache
