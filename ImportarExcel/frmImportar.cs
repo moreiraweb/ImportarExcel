@@ -154,8 +154,6 @@ namespace ImportarExcel
                     try
                     {
 
-                        var mes = int.Parse(filesnames.Name.Substring(0, 2));
-                        var ano = int.Parse(filesnames.Name.Substring(2, 4));
 
                         listaMigracao.AddRange(Efetivo.LerPlanilha(filesnames.FullName));
                         nomePlanilha = "Efetivo";
